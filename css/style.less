@@ -26,16 +26,31 @@ sub { font-size:50%; vertical-align: sub; }
 
 @import 'mixins';
 
+@page_width: 540px;
+@content_width: 480px;
+@menu_height: 30px;
+@secondary_menu_height: 58px;
+
+@gutter: 8px;
+@white: #ffffff;
+@black: #000000;
+@red: #C0171D;
+@grey-d: #D9D9D9;
+@grey-f: #F5F5F5;
+
 /* DEFAULTS */
 html {
 	font-size: 62.5%; // Reset font size to 10px for easy calculation
+  height: 100%;
 }
+
 body  {
-	padding: 0 2.618em;
-	font-size: 1.6em; // 14 px
+	padding: 0;
+  margin: 0;
+	font-size: 1.5em; // 14 px
 	line-height: 1.618; // golden ratio
-	color: @color_body;
-	font-family: @serif;
+	color: @black;
+	font-family: "NovelPro-Light";
 	-webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 	text-rendering: optimizeLegibility;
@@ -43,6 +58,24 @@ body  {
 	position: relative;
 	background: #fff;
 	word-wrap:break-word;
+  height: 100%;
+
+  font-feature-settings: "onum", "ss01", "ss03", "liga", "kern";
+  -moz-font-feature-settings:  "onum", "liga", "ss01", "ss03";
+  -ms-font-feature-settings:  "onum", "ss01", "ss03", "liga", "kern";
+  -webkit-font-feature-settings:  "onum", "ss01", "ss03", "liga", "kern";
+  -o-font-feature-settings:  "onum", "ss01", "ss03", "liga", "kern";
+  text-rendering: optimizeLegibility;
+}
+
+.smallcaps{
+  font-feature-settings: "smcp", "onum", "ss01", "ss03", "liga", "kern";
+  -moz-font-feature-settings: "smcp", "onum", "liga", "ss01", "ss03";
+  -ms-font-feature-settings: "smcp", "onum", "ss01", "ss03", "liga", "kern";
+  -webkit-font-feature-settings: "smcp", "onum", "ss01", "ss03", "liga", "kern";
+  -o-font-feature-settings: "smcp", "onum", "ss01", "ss03", "liga", "kern";
+  text-rendering: optimizeLegibility;
+  text-transform: lowercase;
 }
 
 ::selection, ::-moz-selection  {
@@ -73,7 +106,8 @@ a {
 
 h1, h2, h3, h4, h5, h6  {
 	margin: 0 0 .618em;
-	font-family: @sans;
+	font-family: 'NovelPro-Bold';
+  font-weight: normal;
 	color: darken(@color_body, 100%);
 	a {
 		text-decoration: none;
@@ -150,10 +184,238 @@ blockquote  {
 }
 
 /* LAYOUT */
+#head{
+  width: @page_width;
+  margin: @gutter auto;
+  text-align: center;
+}
+
+#the-red-line{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 6px;
+  background-color: @red;
+  border-bottom: 1px solid @white;
+  z-index: 99999;
+}
+
 #wrapper  {
+  margin: 0;
+  padding: 0;
 	width: 100%;
-	max-width: 990px;
-	margin: 0 auto;
+  height: 100%;
+  position:relative;
+  
+}
+
+section{
+  width: @page_width;
+  margin: 0 auto;
+  position: relative;
+
+  h1, h2{
+    font-family: "NovelPro-SemiBoldIt", serif;
+    margin: 20px 0 15px 0;
+    text-align: center;
+    color: @red;
+    font-size: 2.2rem;
+  }
+  h2{
+    color: @black;
+  }
+
+  h3{
+    font-size: 1.4rem;
+    font-family: "NovelSansPro-Regular", sans-serif;
+    .smallcaps();
+    border-bottom: 1px solid @grey-d;
+margin: 0 30px;
+  }
+
+  h4{
+    font-family: "NovelSansPro-Regular", sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.618em;
+    color: @black;
+    height: 1.618em * 3;
+    overflow: hidden;
+    margin: 0 40px;
+  }
+  .published_at{
+    font-size: 1.1rem;
+    line-height: 1em;
+    font-family: "NovelSansPro-Regular", sans-serif;
+    color: @red;
+    .smallcaps();
+    margin: 10px auto;
+    border-bottom: 1px solid @red;
+    width: 80px;
+  }
+
+  .middot{
+    text-align: center;
+    color: @red;
+    font-size: 4.0rem;
+    line-height: 1em;
+
+  }
+
+  .content{
+    margin: 0 auto;
+    width: @content_width;
+
+    p{
+      margin: 0;
+    }
+  }
+
+  .tweet{
+    .author{
+      font-family: "NovelSansPro-SemiBold", sans-serif;
+      .smallcaps();
+    }
+  }
+}
+
+.menu{
+  width:100%;
+  height: @menu_height;
+  background: @white;//#fafafa;
+  .transition(background-color, ease-in-out, .27s);
+
+  &.scroll-to-fixed-fixed{
+    background: #fafafa;
+    ul{
+      width: 100%;
+    }
+  }
+  ul{
+    list-style-type: none;
+    width: @page_width;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+
+      border-bottom: 1px solid @grey-d;
+    
+    li{
+      display: inline;
+      margin: 0 11px;
+      height: @menu_height;
+      font-family: 'NovelSansPro-Regular';
+      font-size: 1.30rem;
+      text-align: center;
+      line-height: @menu_height;
+      color: @black;
+
+      .smallcaps();
+      &:hover{
+        color: @red;
+      }
+    }
+  }
+}
+
+#secondary-menu{
+  
+  width: 100%;
+  height: @secondary_menu_height;
+  background-color: white;//@grey-f;
+
+
+  font-family: "NovelSansPro-Light", sans-serif;
+  font-size: 1.1rem;
+  line-height: @secondary_menu_height;
+
+  &.scroll-to-fixed-fixed{
+    background-color: @white;
+
+    >.inner{
+      border-bottom: 1px solid @grey-d;
+    }
+    >.shadow{
+      display:block;
+      top: @secondary_menu_height + 1;
+    }
+  }
+  
+  >.inner{
+    width: @page_width;
+    margin: 0 auto;
+    height: @secondary_menu_height;
+    position: relative;
+    background-color: @white;
+    z-index: 1;
+  }
+
+  >.shadow{
+    position: absolute;
+    display:none;
+    top: @secondary_menu_height - 10;
+    left: 50%;
+    margin-left: -@page_width/2;
+    height: 10px;
+    width: @page_width;
+    background: url('/images/shadow.png');
+    z-index:0;
+    .transition(top, ease-in-out, .35s);
+  }
+
+  .fa{
+    font-size: 1.2rem;
+  }
+
+  #access{
+    position:absolute;
+    left:0px;
+    top:0;
+    width: 50%;
+    height: @secondary_menu_height;
+    text-align: center;
+
+    
+  }
+  #logo{
+    position:absolute;
+    left: 50%;
+    top: 0px; //handcrafted
+    margin-left: -25px;
+    width: 50px;
+    img{
+      vertical-align: middle;
+    }
+  }
+  #contacts{
+    position:absolute;
+    right:0px;
+    width: 50%;
+    text-align: center;
+  }
+
+  .left, .right{
+    position: absolute;
+    text-align: center;
+    width: 80px;
+    margin-left: -40px;
+    left: 33%;
+    background: fade(gold, 2%);
+    .smallcaps();
+    color: @red;
+    height: @secondary_menu_height;
+  }
+
+  .left{
+    left: 66%;
+  }
+  .separator{
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    color: @grey-d;
+    height: @secondary_menu_height;
+  }
 }
 
 .site-header  {
@@ -269,7 +531,7 @@ aside  {
 footer  {
 	margin: 0 auto 4.236em;
 	padding: 3.631em 2.618em 0;
-	border-top: 5px solid @border_main;
+	//border-top: 5px solid @border_main;
 	text-align: center;
 	font-family: @sans;
 	font-weight: 700;
@@ -343,7 +605,7 @@ footer  {
 @media only screen and (min-width: 769px)  {
 
 	body  {
-		font-size: 1.8em; // 14 px
+		font-size: 1.4em; // 14 px
 		line-height: 1.618; // golden ratio
 	}
 	
