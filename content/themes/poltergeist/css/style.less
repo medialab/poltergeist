@@ -78,6 +78,10 @@ body  {
   text-transform: lowercase;
 }
 
+.bold{
+
+}
+
 ::selection, ::-moz-selection  {
 	background: @color_links;
 	color: #fff;
@@ -106,7 +110,7 @@ a {
 
 h1, h2, h3, h4, h5, h6  {
 	margin: 0 0 .618em;
-	font-family: 'NovelPro-Bold';
+	//font-family: 'NovelPro-Bold';
   font-weight: normal;
 	color: darken(@color_body, 100%);
 	a {
@@ -215,6 +219,10 @@ blockquote  {
   position: relative;
   top: -@menu_height - @secondary_menu_height - 24px;
   visibility: hidden;
+
+  &.below{
+    top: -@menu_height - @secondary_menu_height - 48px;
+  }
 }
 
 section{
@@ -224,7 +232,7 @@ section{
 
   h1, h2{
     font-family: "NovelPro-SemiBoldIt", serif;
-    margin: 20px 0 15px 0;
+    margin: 25px 0 15px 0;
     text-align: center;
     color: @red;
     font-size: 2.2rem;
@@ -233,22 +241,39 @@ section{
     color: @black;
   }
 
-  h3{
-    font-size: 1.4rem;
-    font-family: "NovelSansPro-Regular", sans-serif;
+  h3, h4, h5, h6{
+     font-family: "NovelSansPro-Regular", sans-serif;
+     font-size: 1.4rem;
+     line-height: 1.618em;
+     text-align: center;
     .smallcaps();
+
+    .bold{
+      font-family: "NovelSansPro-Semibold", sans-serif;
+     
+    }
+  }
+
+  h3{
+    margin: 0 30px;
     border-bottom: 1px solid @grey-d;
-margin: 0 30px;
   }
 
   h4{
-    font-family: "NovelSansPro-Regular", sans-serif;
     font-size: 1.2rem;
-    line-height: 1.618em;
     color: @black;
     height: 1.618em * 3;
     overflow: hidden;
     margin: 0 40px;
+  }
+
+  h5{
+    color: @red;
+
+  }
+
+  h6{
+
   }
   .published_at{
     font-size: 1.1rem;
@@ -325,8 +350,21 @@ margin: 0 30px;
   }
 }
 
+.summary{
+  position: absolute;
+left: 50%;
+margin-left: 254px;
+  ul{
+    padding-top: 60px;
+  }
+}
+
+.post-thumbnail{
+  float: left;
+  width: 50%;
+}
+
 #secondary-menu{
-  
   width: 100%;
   height: @secondary_menu_height;
   background-color: white;//@grey-f;
@@ -539,17 +577,33 @@ aside  {
 }
 
 footer  {
-	margin: 0 auto 4.236em;
-	padding: 3.631em 2.618em 0;
-	//border-top: 5px solid @border_main;
+	margin: 0;
+	padding: 0;
+  height: 1.618em * 2;
+  background: @white;
+  color: @black;
+  clear: both;
 	text-align: center;
-	font-family: @sans;
-	font-weight: 700;
-	font-size: .8em;
-	color: lighten(@color_body, 10%);
-	img  {
-		max-width: 30px;
-	}
+  font-family: 'NovelSansPro-Regular';
+  line-height:1.618em * 2;
+  font-size: 1.2rem;
+
+  .smallcaps();
+
+  &.scroll-to-fixed-fixed >.inner{
+    border-bottom: 1px solid @red;
+  }
+  >.inner{
+    border-top: 1px solid @grey-d;
+    border-bottom: 1px solid @white;
+    width: @page_width;
+    margin: 0 auto;
+    .transition(border-bottom, ease-in-out, .35s);
+  }
+
+  a{
+    padding: 0 20px;
+  }
 }
 
 /* SINLGE ARTICLE */

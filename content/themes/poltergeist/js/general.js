@@ -25,6 +25,7 @@
 
   */
   pol.templates = {};
+  pol.timers = {}; // timeout ids, keys are function names
 
   /*
 
@@ -139,27 +140,77 @@
     $('#secondary-menu').scrollToFixed({
       marginTop: 37
     });
+
+    $('#footer').scrollToFixed({
+      bottom: 0,
+      marginTop: 95,
+      limit: $('#footer').offset().top
+    });
   };
+
+  /*
+    
+      
+      Set location.href dinamically (we're already there)
+      ---
+  */
+  pol.set_location = function(target) {
+    clearTimeout(pol.timers.set_location);
+    pol.timers.set_location = setTimeout(function() {
+      location.href=target;
+
+    }, 550);
+
+  }
+
+
 
   /*
     
       Init function, on document ready
       ===
   */
-	$(document).ready(function(){
+	$(window).load(function(){
     pol.debug = pol.DEBUG_INFO;
     pol.resize();
 
-    $('a.to-anchor').click(function(){
-      $('body').animate({
-        scrollTop: $( $.attr(this, 'href') ).offset().top
-      }, 500);
-      return false;
+    $(document).on('click', 'a.to-anchor', function(event) {
+      var target = $.attr(this, 'href').replace('/',''),
+          el = $( target );
+
+      if(el.length){
+        event.preventDefault();
+    
+        $('body').animate({
+          scrollTop: el.offset().top
+        }, {
+          duration: 500,
+        });
+        pol.set_location(target);
+      };
     });
     
-    $('body').scrollspy({ target: '#navbar' })
+    //$('body').scrollspy({ target: '#navbar' })
 
-		
+		var summaries = $('.summary');
+        summaries.each(function(i) {
+            var summary = $(summaries[i]);
+            var next = summaries[i + 1];
+
+            summary.scrollToFixed({
+                marginTop: 67,
+                limit: function() {
+                    var limit = 0;
+                    if (next) {
+                        limit = $(next).offset().top - $(this).outerHeight(true) - 100;
+                    } else {
+                        limit = $('footer').offset().top - $(this).outerHeight(true) - 100;
+                    }
+                    return limit;
+                },
+                zIndex: 999
+            });
+        });
     /*
       Fill with tweets
     */
@@ -167,7 +218,7 @@
       url: 'http://aime.medialab.sciences-po.fr/tweets-aime.json',
       selector: '#tweets'
     });
-
+    setTimeout(function(){$("#footer").trigger('scroll.ScrollToFixed')}, 100);
 	});
 
 }(window, Handlebars, jQuery));

@@ -1,0 +1,22 @@
+<div class="summary">
+  <ul>
+    
+  </ul>
+</div>
+<section>
+  <a class="anchor" id="the-blog" ></a>
+  <h1>
+    The blog.
+  </h1>
+
+  {{#foreach posts}}
+  <div class="post-thumbnail">
+    <a href="/{{slug}}">
+      
+        <div class="published_at">{{date published_at format="DD.MM.YYYY"}}</div>
+        <h4>{{{decorate title}}}</h4>
+    </a>
+  </div>
+{{/foreach}}
+  <div style="clear:both"></div>
+</section>

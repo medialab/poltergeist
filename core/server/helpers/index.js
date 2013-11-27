@@ -2,6 +2,7 @@ var _           = require('underscore'),
     moment      = require('moment'),
     downsize    = require('downsize'),
     when        = require('when'),
+    i18n        = require('i18next'),
     hbs         = require('express-hbs'),
     packageInfo = require('../../../package.json'),
     errors      = require('../errorHandling'),
@@ -444,6 +445,14 @@ coreHelpers = function (ghost) {
         })
 
       // return text.replace(/(\s+([;:]))/g,function( a,b ){return "&nbsp;PPPPPPPP" + a.replace(/\s/,'')});
+    });
+
+    /**
+     * [ description]
+     * @param  {String} locale key
+     */
+    ghost.registerThemeHelper('t', function(key){
+      return i18n.t(key);
     });
 
     // Return once the template-driven helpers have loaded
