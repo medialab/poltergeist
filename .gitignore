@@ -1,2 +1,5 @@
 .DS_Store
 *.sublime-*
+*.db
+config.js
+node_modules
