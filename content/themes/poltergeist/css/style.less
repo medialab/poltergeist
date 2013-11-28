@@ -30,6 +30,7 @@ sub { font-size:50%; vertical-align: sub; }
 @content_width: 480px;
 @menu_height: 30px;
 @secondary_menu_height: 58px;
+@footer_height: 40px;
 
 @gutter: 8px;
 @white: #ffffff;
@@ -47,7 +48,7 @@ html {
 body  {
 	padding: 0;
   margin: 0;
-	font-size: 1.5em; // 14 px
+	font-size: 1.4em; // 14 px
 	line-height: 1.618; // golden ratio
 	color: @black;
 	font-family: "NovelPro-Light";
@@ -99,6 +100,15 @@ a {
 	&:hover {
 		color: @red;
 	}
+
+  &.to-anchor{
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    .transition(border-color, ease-in-out, .35s);
+    &.active{
+      border-bottom: 1px solid @red;
+    }
+  } 
 }
 
 /* Typography */
@@ -221,7 +231,7 @@ blockquote  {
   visibility: hidden;
 
   &.below{
-    top: -@menu_height - @secondary_menu_height - 48px;
+    top: -@menu_height - @secondary_menu_height - 70px;
   }
 }
 
@@ -229,6 +239,20 @@ section{
   width: @page_width;
   margin: 0 auto;
   position: relative;
+
+  &.below{ // footer sections
+    h1, h2{
+      font-family: "NovelSansPro-Semibold", sans-serif;
+      .smallcaps;
+    }
+    .content{
+      font-family: "NovelSansPro-Regular", sans-serif;
+      font-size: 1.1rem;
+      p{
+        margin: 0 0 10px 0;
+      }
+    }
+  }
 
   h1, h2{
     font-family: "NovelPro-SemiBoldIt", serif;
@@ -329,13 +353,13 @@ section{
     text-align: center;
     margin: 0 auto;
     padding: 0;
-
+    height: @menu_height;
       border-bottom: 1px solid @grey-d;
     
     li{
       display: inline;
       margin: 0 11px;
-      height: @menu_height;
+      height: @menu_height -3;
       font-family: 'NovelSansPro-Regular';
       font-size: 1.30rem;
       text-align: center;
@@ -352,10 +376,16 @@ section{
 
 .summary{
   position: absolute;
-left: 50%;
-margin-left: 254px;
+  left: 50%;
+  margin-left: 240px;
+  font-family: 'NovelSansPro-Light';
+  overflow: hidden;
+
+  .smallcaps();
+  
   ul{
     padding-top: 60px;
+    list-style-type: none;
   }
 }
 
@@ -368,51 +398,28 @@ margin-left: 254px;
   width: 100%;
   height: @secondary_menu_height;
   background-color: white;//@grey-f;
-
-
   font-family: "NovelSansPro-Light", sans-serif;
   font-size: 1.1rem;
   line-height: @secondary_menu_height;
-
+  
   &.scroll-to-fixed-fixed{
-    background-color: @white;
-
     >.inner{
-      border-bottom: 1px solid @grey-d;
+      border-color: @grey-d;
     }
+
     >.shadow{
-      display:block;
       top: @secondary_menu_height + 1;
     }
   }
-  
+
   >.inner{
     width: @page_width;
-    margin: 0 auto;
     height: @secondary_menu_height;
-    position: relative;
-    background-color: @white;
-    z-index: 1;
+    border-bottom: 1px solid transparent;
+    .transition(border-color, ease-in-out, .35s);
   }
 
-  >.shadow{
-    position: absolute;
-    display:none;
-    top: @secondary_menu_height - 10;
-    left: 50%;
-    margin-left: -@page_width/2;
-    height: 10px;
-    width: @page_width;
-    background: url('/images/shadow.png');
-    z-index:0;
-    .transition(top, ease-in-out, .35s);
-  }
-
-  .fa{
-    font-size: 1.2rem;
-  }
-
-  #access{
+   #access{
     position:absolute;
     left:0px;
     top:0;
@@ -464,6 +471,42 @@ margin-left: 254px;
     color: @grey-d;
     height: @secondary_menu_height;
   }
+}
+
+.fixed-menu{
+  &.scroll-to-fixed-fixed{
+    background-color: @white;
+
+    >.shadow{
+      display:block;
+    }
+  }
+  
+  >.inner{
+    margin: 0 auto;
+    position: relative;
+    background-color: @white;
+    z-index: 1;
+  }
+
+  >.shadow{
+    position: absolute;
+    display:none;
+    top: @secondary_menu_height - 10;
+    left: 50%;
+    margin-left: -@page_width/2;
+    height: 10px;
+    width: @page_width;
+    background: url('/images/shadow.png');
+    z-index:0;
+    .transition(top, ease-in-out, .35s);
+  }
+
+  .fa{
+    font-size: 1.2rem;
+  }
+
+ 
 }
 
 .site-header  {
@@ -579,7 +622,7 @@ aside  {
 footer  {
 	margin: 0;
 	padding: 0;
-  height: 1.618em * 2;
+  height: @footer_height;
   background: @white;
   color: @black;
   clear: both;
@@ -590,19 +633,37 @@ footer  {
 
   .smallcaps();
 
-  &.scroll-to-fixed-fixed >.inner{
-    border-bottom: 1px solid @red;
+  &.scroll-to-fixed-fixed {
+    >.inner{
+      border-bottom: 1px solid @grey-d;
+    }
+    >.shadow{
+      top: @footer_height + 1;
+    }
   }
+
   >.inner{
     border-top: 1px solid @grey-d;
     border-bottom: 1px solid @white;
     width: @page_width;
+    height: @footer_height;
     margin: 0 auto;
-    .transition(border-bottom, ease-in-out, .35s);
+    .transition(border-color, ease-in-out, .35s);
+  }
+
+  >.shadow{
+    top: @footer_height - 10;
   }
 
   a{
     padding: 0 20px;
+    
+    &.to-anchor{
+      height: @footer_height;
+      &.active{
+        //border-bottom: 1px solid @grey-d;
+      }
+    }
   }
 }
 
@@ -669,7 +730,7 @@ footer  {
 @media only screen and (min-width: 769px)  {
 
 	body  {
-		font-size: 1.4em; // 14 px
+    font-size: 1.4em; // 14 px
 		line-height: 1.618; // golden ratio
 	}
 	

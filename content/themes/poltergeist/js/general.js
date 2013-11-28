@@ -28,6 +28,15 @@
   pol.timers = {}; // timeout ids, keys are function names
 
   /*
+      
+      vars
+      ====
+
+  */
+  pol.checkpoints = []; // cfr. pol.scrollspy 
+  pol.previous_checkpoint = '';// cfr. pol.scrollspy 
+
+  /*
 
       Logs
       ====
@@ -163,7 +172,92 @@
 
   }
 
+  pol.hashchange = function(event) {
+    
 
+    var hashes = location.hash.split('/'),
+        target = $('a.to-anchor[href="/'+hashes.join('/')+'"]'), // direct target, full hash
+        parent_target;
+
+    pol.verbose('(pol.hashchange)', location.hash, 'a.to-anchor[href="/'+hashes.join('/')+'"]');
+    
+    
+
+    if(!target.hasClass('active')){
+      $('a.to-anchor.active').removeClass('active');
+      target.addClass('active');
+    }
+
+    // parent target classes
+    while(hashes.length > 1) {
+      hashes.pop();
+      pol.verbose('...', hashes.join('/'));
+      $('a.to-anchor[href="/'+hashes.join('/')+'"]').addClass('active')
+    }
+
+    
+  };
+
+  /*
+      activate current anchor links, with href param of anchor elemnet
+  */
+  pol.anchorify = function(href){
+    var hashes = href.split('/'),
+        target = $('a.to-anchor[href="/'+hashes.join('/')+'"]');
+
+    pol.verbose('(pol.anchorify)', hashes);
+
+    if(!target.length)
+      return;
+
+    if(!target.hasClass('active')) {
+      $('a.to-anchor.active').removeClass('active');
+      target.addClass('active');
+    }
+
+    // parent target classes
+    while(hashes.length > 1) {
+      hashes.pop();
+      pol.verbose('...', hashes.join('/'));
+      $('a.to-anchor[href="/'+hashes.join('/')+'"]').addClass('active')
+    }
+
+  }
+
+
+  /*
+      Handle the scrollspy on window, looking for anchor elements.
+  */
+  pol.scrollspy = function(event) {
+    
+    var y = $(window).scrollTop(),
+        ay, // anchor y
+        checkpoint, // object visible (uppermost part of the scrreen)
+        num_of_checkpoints = pol.checkpoints.length;
+
+    //pol.verbose('(pol.scrollspy) y:', y, ', y-max:', y + pol.height/2);
+
+    for(var i=0; i<num_of_checkpoints; i++) {
+      ay = pol.checkpoints[i].top;
+
+      if(ay < y)
+        continue;
+
+      if(ay > y + pol.height/2)
+        checkpoint = pol.checkpoints[i-1].id; //pol.verbose('... previous is visible', pol.checkpoints[i-1].id, pol.checkpoints[i-1].top)   
+      else
+        checkpoint = pol.checkpoints[i].id; //pol.verbose('...', pol.checkpoints[i].id, pol.checkpoints[i].top);
+      
+      break; // take just the very first visible element in page
+    }
+
+    
+    if(checkpoint != pol.previous_checkpoint) {
+      pol.log('(pol.scrollspy) new checkpoint:', checkpoint);
+      pol.anchorify(checkpoint);
+    }
+    pol.previous_checkpoint = checkpoint;
+  } 
 
   /*
     
@@ -172,11 +266,16 @@
   */
 	$(window).load(function(){
     pol.debug = pol.DEBUG_INFO;
+
+    pol.height = $(window).height();
     pol.resize();
 
+    $(window).on('hashchange', pol.hashchange);
+    pol.hashchange();
+
     $(document).on('click', 'a.to-anchor', function(event) {
-      var target = $.attr(this, 'href').replace('/',''),
-          el = $( target );
+      var target = $.attr(this, 'href').replace(/^\//,'').replace(/\//g,'--'), // anchor ids with subsection must be in the form section--subsection to handle location hash /#section/subsection
+        el = $( target );
 
       if(el.length){
         event.preventDefault();
@@ -186,30 +285,54 @@
         }, {
           duration: 500,
         });
-        pol.set_location(target);
+        pol.set_location(target.replace(/--/g,'/'));
       };
     });
     
+    pol.checkpoints = []// array of paragraphs
+    $("a.anchor").each(function(i,e){
+      var el = $(this);
+      pol.checkpoints.push({
+        id: '#' + el.attr('id').replace(/--/g,'/'),
+        top: el.offset().top
+      });
+    });
+
+    $(window).scroll(pol.scrollspy);
     //$('body').scrollspy({ target: '#navbar' })
 
 		var summaries = $('.summary');
         summaries.each(function(i) {
-            var summary = $(summaries[i]);
-            var next = summaries[i + 1];
+            var summary = $(summaries[i]),
+                next = summaries[i + 1],
+                section = summary.next('section'),
+                first_content_offset = 20,
+                first_content;
+
+            if(section.length) {
+              first_content = section.find('.content');
+              if(first_content.length) {
+                //pol.verbose('found section content', first_content.first().position().top );
+                first_content_offset = section.find('.content').first().position().top + 16;
+              }
+            }
+              //
 
             summary.scrollToFixed({
-                marginTop: 67,
+                marginTop: 87,
                 limit: function() {
                     var limit = 0;
                     if (next) {
                         limit = $(next).offset().top - $(this).outerHeight(true) - 100;
                     } else {
-                        limit = $('footer').offset().top - $(this).outerHeight(true) - 100;
+                        limit = $('#the-end').offset().top - $(this).outerHeight(true) - 100;
                     }
                     return limit;
                 },
                 zIndex: 999
             });
+
+            summary.find('ul').css('padding-top', first_content_offset);
         });
     /*
       Fill with tweets

@@ -1,0 +1,37 @@
+
+<section>
+  <h1>How do we compose a common world?</h1>
+  <div class="content">
+    <p>
+      Not so long ago, the project that would have seen modernization spread over the whole planet came up against unexpected opposition from the planet itself. Should we give up, deny the problem, or grit our teeth and hope for a miracle?
+    </p>
+      Alternatively we could inquire into what this modern project has meant so as to find out how it can be begun again on a new footing. Such an inquiry becomes possible if we accept that there is a huge disjunction between what the Moderns experience and the accounts they give of that experience. 
+    </p>
+    <p>
+      Here, we propose to continue the inquiry that was begun with the hard-copy “interim report”. First, by adding to the work the documentation it was lacking. Then, in a second step, by offering a useful digital environment that will turn readers into co-researchers. And finally, as a third step, by republishing the collective results.
+    </p>
+  </div>
+  <div class="middot">
+    &middot;
+  </div>
+  <div>
+    <div style="float: left; width:50%; text-align:center">
+      <h3>latest from twitter</h3>
+      <div id="tweets"></div>
+    </div>
+    <div style="margin-left:50%;width:50%; text-align:center">
+      <h3>latest from the blog</h3>
+
+      {{#foreach posts}}
+      {{#if @first}}
+      <a href="/{{slug}}">
+          <div class="published_at">{{date published_at format="DD.MM.YYYY"}}</div>
+          <h4>{{{decorate title}}}</h4>
+      </a>
+      {{/if}}
+      {{/foreach}}
+    </div>
+     <div style="clear:both"></div>
+  </div>
+ 
+</section>
