@@ -233,7 +233,7 @@ coreHelpers = function (ghost) {
         var title, blog;
         blog = ghost.blogGlobals();
         if (_.isString(this.path)) {
-            if (!this.path || this.path === '/' || this.path === '' || this.path.match(/\/page/)) {
+            if (!this.path || this.path === '/' || this.path === '' || this.path.match(/\/page/) || this.path.match(/\/blog/) || this.path.match(/\/search/)) {
                 blog = ghost.blogGlobals();
                 title = blog.title;
             } else {
@@ -433,6 +433,7 @@ coreHelpers = function (ghost) {
     ghost.registerThemeHelper('decorate', function( text ) {
       if( typeof text == "undefined" )
         return '';
+    
       // return window['Hypher']['languages']['fr'].hyphenateText(text)
       return text
         .replace(/{([^#]*)#(\d+)}/g,function(a,title,id){
@@ -445,6 +446,35 @@ coreHelpers = function (ghost) {
         })
 
       // return text.replace(/(\s+([;:]))/g,function( a,b ){return "&nbsp;PPPPPPPP" + a.replace(/\s/,'')});
+    });
+
+    ghost.registerThemeHelper('aime_excerpt', function (options) {
+        var truncateOptions = (options || {}).hash || {},
+            excerpt;
+
+        truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
+
+        /*jslint regexp:true */
+        excerpt = String(this.html).replace(/<\/?[^>]+>/gi, '');
+        /*jslint regexp:false */
+
+        if (!truncateOptions.words && !truncateOptions.characters) {
+            truncateOptions.words = 50;
+        }
+
+        excerpt = downsize(excerpt, truncateOptions)
+          .replace(/{([^#]*)#(\d+)}/g, function(a, title, id) {
+            return "<span class='link doc' data-id='ref-" + id.replace(/\s/,'') + "'>" + title.replace(/\s$/,'') + "</span>";
+          })
+          .replace(/\[[^\]]*\]/g, function(s) {
+            return "<span class='modes'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
+          }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g, function(s) {
+            return "<span class='smallcaps'>" + s + "</span>"
+          });
+
+        return new hbs.handlebars.SafeString(
+          excerpt
+        );
     });
 
     /**

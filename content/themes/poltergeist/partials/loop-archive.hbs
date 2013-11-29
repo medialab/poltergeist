@@ -1,27 +1,25 @@
 {{! The main content area on the homepage }}
-<section class="articles">
+  <div class="summary">
+
+    <ul>
+    
+    </ul>
+    {{!! After all the posts, we have the previous/next pagination links }}
+{{> pagination}}
+  </div>
 
 	{{! Each post will be output using this markup }}
 	{{#foreach posts}}
-	<article class="{{post_class}}">
-
-		<header>
-
-			<span>{{date published_at format="DD MMMM YYYY"}} by {{author.name}} {{#if tags}}on {{tags separator=" | "}}{{/if}}</span>
-
-			<h1><a href="{{url}}" title="{{title}}">{{title}}</a></h1>
-
-		</header>
-
-		<section>
-			<p>{{excerpt}}</p>
-			<a class="read-more" href="{{url}}" title="{{title}}">Read more</a>
-		</section>
-
-	</article>
+   <section>
+      <h2 style="margin-left:40px; margin-right:40px"><a href="{{url}}" title="{{title}}">{{{decorate title}}}</a></h2>
+      <h5>{{date published_at format="DD MMMM YYYY"}}</h5>
+      <h6>{{#foreach tags}}{{name}}{{/foreach}}</h6>
+      <div class="content">
+      {{aime_excerpt}}
+      </div>
+      <a class="read-more" href="{{url}}" title="{{title}}">Read more</a>
+    </section>
 	{{/foreach}}
 
-</section>
 
-{{!! After all the posts, we have the previous/next pagination links }}
-{{> pagination}}
+

@@ -105,10 +105,20 @@ a {
     display: inline-block;
     border-bottom: 1px solid transparent;
     .transition(border-color, ease-in-out, .35s);
-    &.active{
-      border-bottom: 1px solid @red;
-    }
-  } 
+    
+  }
+
+  &.active{
+    border-bottom: 1px solid @red;
+  }
+  &.read-more{
+    font-family: 'NovelSansPro-Regular';
+    font-size: 1.2rem;
+    line-height: 1.618em; 
+    .smallcaps;
+    text-align: center;
+    display: block;
+  }
 }
 
 /* Typography */
@@ -795,4 +805,10 @@ footer  {
 .single-header.show  {
 	-webkit-animation: down 1s;
 	 -webkit-animation-fill-mode: forwards;
+}
+
+
+#disqus_thread{
+  width: @content_width;
+  margin:0 auto;
 }

@@ -1,27 +1,29 @@
 {{! Everything inside the #post tags pulls data from the post }}
 {{#post}}
-<article class="single-article {{post_class}}">
+<!-- article class="single-article {{post_class}}" -->
 
-    <header>
+    <!-- header>
 
-    	<span class="published_at">{{date published_at format="DD MMMM YYYY"}} <!-- by {{author.name}} {{#if tags}}on {{tags separator=" | "}}{{/if}} --></span>
+    	<span class="published_at">{{date published_at format="DD MMMM YYYY"}} by {{author.name}} {{#if tags}}on {{tags separator=" | "}}{{/if}} </span-->
 
-    	<h1><a href="{{url}}" title="{{title}}">{{title}}</a></h1>
+    	<!-- h1><a href="{{url}}" title="{{title}}">{{title}}</a></h1 -->
 
-    </header>
+    <!-- /header -->
 
     <section>
-
+      <h2 style="margin-left:40px; margin-right:40px"><a href="{{url}}" title="{{title}}">{{title}}</a></h2>
+      <h5>{{date published_at format="DD MMMM YYYY"}}</h5>
+      <div class="content">
     	{{content}}
-
+      </div>
     </section>
 
-</article>
+<!-- /article-->
 
-<aside>
+<!-- aside>
 	<img src="{{author.image}}" title="{{author.name}}" />
 	<p>{{author.bio}}</p>
-</aside>
+</aside -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
    var disqus_shortname = 'aimeproject'; // required: replace example with your forum shortname

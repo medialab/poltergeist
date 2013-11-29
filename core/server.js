@@ -365,7 +365,9 @@ when(ghost.init()).then(function () {
     /* TODO: dynamic routing, homepage generator, filters ETC ETC */
     server.get('/rss/', frontend.rss);
     server.get('/rss/:page/', frontend.rss);
+    server.get('/blog/', frontend.blog);
     server.get('/page/:page/', frontend.blog);
+    server.get('/search/:query/', frontend.search);
     server.get('/:slug/', frontend.single);
     server.get('/', frontend.homepage);
 

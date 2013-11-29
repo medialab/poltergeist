@@ -81,7 +81,7 @@
       decorate text string with html tags
      ---
   */
-  Handlebars.registerHelper('aime', function(text) {
+  pol.decorate_aime = function(text) {
     var _t =  text
       .replace(/\[[^\]]*\]/g,function(s){
         return "<span class='smallcaps'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
@@ -89,7 +89,8 @@
         return "<span class='smallcaps'>" + s + "</span>"
       });
     return _t;
-  });
+  };
+  Handlebars.registerHelper('aime', pol.decorate_aime);
 
   
   pol.templates.tweet = Handlebars.compile('<a class="tweet" href="{{link}}"><div class="published_at">{{published_at}}</div><h4><div class="author">{{{aime author}}}</div><div class="text">{{{aime message}}}</div></h4></a>');
@@ -150,10 +151,12 @@
       marginTop: 37
     });
 
-    $('#footer').scrollToFixed({
-      bottom: 0,
+    pol.footer = $('#footer');
+
+    pol.footer.length && pol.footer.scrollToFixed({
+      //bottom: 0,
       marginTop: 95,
-      limit: $('#footer').offset().top
+      //limit: pol.footer.offset().top
     });
   };
 
@@ -243,7 +246,7 @@
       if(ay < y)
         continue;
 
-      if(ay > y + pol.height/2)
+      if(i > 0 && ay > y + pol.height/2)
         checkpoint = pol.checkpoints[i-1].id; //pol.verbose('... previous is visible', pol.checkpoints[i-1].id, pol.checkpoints[i-1].top)   
       else
         checkpoint = pol.checkpoints[i].id; //pol.verbose('...', pol.checkpoints[i].id, pol.checkpoints[i].top);
@@ -252,11 +255,14 @@
     }
 
     
-    if(checkpoint != pol.previous_checkpoint) {
+    if(checkpoint && checkpoint != pol.previous_checkpoint) {
       pol.log('(pol.scrollspy) new checkpoint:', checkpoint);
       pol.anchorify(checkpoint);
     }
     pol.previous_checkpoint = checkpoint;
+
+    // evaluate footer
+    // pol.footer.position().top
   } 
 
   /*
@@ -334,13 +340,14 @@
 
             summary.find('ul').css('padding-top', first_content_offset);
         });
-    /*
-      Fill with tweets
-    */
+    
+    // Fill with tweets
     pol.tweettify({
       url: 'http://aime.medialab.sciences-po.fr/tweets-aime.json',
       selector: '#tweets'
     });
+
+    // decorate section contents
     setTimeout(function(){$("#footer").trigger('scroll.ScrollToFixed')}, 100);
 	});
 

@@ -11,6 +11,7 @@ var Ghost  = require('../../ghost'),
     errors = require('../errorHandling'),
     when   = require('when'),
     url    = require('url'),
+ 
 
 
     ghost  = new Ghost(),
@@ -63,6 +64,22 @@ frontendControllers = {
             return next(new Error(err));
         });
     },
+    'search': function (req, res, next) {
+      var options = {};
+      options.where = 'philippe'
+
+
+      api.posts.search(options).then(function (page) {
+        console.log('found', page.length);
+      });
+      res.render('search',{});
+      //api.posts.search(options).then(function () {
+      //  res.render('search',{});
+      //}).otherwise(function (err) {
+      //  return next(new Error(err));
+      //});
+      
+    },
     'blog': function (req, res, next) {
         // Parse the page number
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
@@ -85,7 +102,7 @@ frontendControllers = {
         if (!isNaN(postsPerPage) && postsPerPage > 0) {
             options.limit = postsPerPage;
         }
-
+    
         api.posts.browse(options).then(function (page) {
 
             var maxPage = page.pages;
@@ -103,6 +120,7 @@ frontendControllers = {
 
             // Render the page of posts
             ghost.doFilter('prePostsRender', page.posts, function (posts) {
+
                 res.render('blog', {posts: posts, pagination: {page: page.page, prev: page.prev, next: page.next, limit: page.limit, total: page.total, pages: page.pages}});
             });
         }).otherwise(function (err) {

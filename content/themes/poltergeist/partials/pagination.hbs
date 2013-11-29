@@ -1,4 +1,4 @@
-<nav>
-	{{#if pagination.prev}}<a class="prev" href="/page/{{pagination.prev}}" title="Previous">Previous</a>{{/if}}
-	{{#if pagination.next}}<a class="next" href="/page/{{pagination.next}}" title="Next">Next</a>{{/if}}
-</nav>
+<ul>
+	{{#if pagination.prev}}<li><a class="prev" href="/page/{{pagination.prev}}" title="Previous">Previous (page {{pagination.prev}})</a></li>{{/if}}
+	{{#if pagination.next}}<li><a class="next" href="/page/{{pagination.next}}" title="Next">Next (page {{pagination.next}})</a></lI>{{/if}}
+</ul>
