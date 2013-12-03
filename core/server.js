@@ -369,6 +369,7 @@ when(ghost.init()).then(function () {
     server.get('/page/:page/', frontend.blog);
     server.get('/search/:query/', frontend.search);
     server.get('/:slug/', frontend.single);
+    server.get('/tag/:slug/', frontend.tag);
     server.get('/', frontend.homepage);
 
     // Are we using sockets? Custom socket or the default?

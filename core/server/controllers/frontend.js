@@ -64,6 +64,24 @@ frontendControllers = {
             return next(new Error(err));
         });
     },
+    'tag': function(req, res, next) {
+      var options = {};
+      options.limit = 5;
+      options.page = 1;
+      options.where = {'tags.id':1};
+
+      api.posts.browse(options).then(function (page) {
+        console.log('(core.server.controllers.frontend.tag)'.green, 'nexty page', page.next);
+        // Render the page of posts
+        ghost.doFilter('prePostsRender', page.posts, function (posts) {
+            res.render('tag', {posts: posts, pagination: {page: page.page, prev: page.prev, next: page.next, limit: page.limit, total: page.total, pages: page.pages}});
+        });
+      }).otherwise(function (err) {
+        return next(new Error(err));
+      });
+
+
+    },
     'search': function (req, res, next) {
       var options = {};
       options.where = 'philippe'

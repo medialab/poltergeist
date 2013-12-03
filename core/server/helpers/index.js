@@ -233,7 +233,7 @@ coreHelpers = function (ghost) {
         var title, blog;
         blog = ghost.blogGlobals();
         if (_.isString(this.path)) {
-            if (!this.path || this.path === '/' || this.path === '' || this.path.match(/\/page/) || this.path.match(/\/blog/) || this.path.match(/\/search/)) {
+            if (!this.path || this.path === '/' || this.path === '' || this.path.match(/\/page|\/tag/) || this.path.match(/\/blog/) || this.path.match(/\/search/)) {
                 blog = ghost.blogGlobals();
                 title = blog.title;
             } else {
@@ -475,6 +475,30 @@ coreHelpers = function (ghost) {
         return new hbs.handlebars.SafeString(
           excerpt
         );
+    });
+
+
+    ghost.registerThemeHelper('aime_content', function (options) {
+        var truncateOptions = (options || {}).hash || {},
+            content;
+
+        truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
+
+        if (truncateOptions.words || truncateOptions.characters)
+          content = downsize(this.html, truncateOptions);
+        else
+          content = this.html;
+        
+        content = content.replace(/{([^#]*)#(\d+)}/g, function(a, title, id) {
+            return "<span class='link doc' data-id='ref-" + id.replace(/\s/,'') + "'>" + title.replace(/\s$/,'') + "</span>";
+          })
+          .replace(/\[[^\]]*\]/g, function(s) {
+            return "<span class='modes'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
+          }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g, function(s) {
+            return "<span class='smallcaps'>" + s + "</span>"
+          });
+
+        return new hbs.handlebars.SafeString(content);
     });
 
     /**

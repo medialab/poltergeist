@@ -154,9 +154,9 @@
     pol.footer = $('#footer');
 
     pol.footer.length && pol.footer.scrollToFixed({
-      //bottom: 0,
+      bottom: 0,
       marginTop: 95,
-      //limit: pol.footer.offset().top
+      limit: pol.footer.offset().top
     });
   };
 
