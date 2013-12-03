@@ -1,7 +1,7 @@
 {
   "LANG_TEST": "i18n marche (FR)",
   "Test": "test pour la langue etrangere",
-  "header.project": "le projet",
+  "header.project": "projet",
   "fr": "fr",
   "en": "en",
   "header.phases": "header.phases",
@@ -10,5 +10,10 @@
   "header.network": "header.network",
   "header.faq": "header.faq",
   "sign up": "inscription",
-  "log in": "connexion"
+  "log in": "connexion",
+  "the phases": "phases",
+  "the blog": "blog",
+  "the tools": "outils",
+  "the network": "réseau",
+  "faq": "faq"
 }
