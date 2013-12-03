@@ -30,7 +30,7 @@ server.configure(function() {
 // ##Custom i18n configuration
 i18n.configure({
     locales:['en', 'fr'],
-    defaultLocale: 'fr',
+    defaultLocale: 'en',
     directory: __dirname + '/../content/locales',
     indent: "  "
 });

@@ -124,6 +124,8 @@
             message: last_tweet.message,
             link: last_tweet.link
           }));
+
+
     });
   };
 
@@ -276,6 +278,8 @@
     pol.height = $(window).height();
     pol.resize();
 
+    $('p').css('text-align', 'justify').hyphenate('en-us');
+
     $(window).on('hashchange', pol.hashchange);
     pol.hashchange();
 
@@ -303,7 +307,7 @@
         top: el.offset().top
       });
     });
-
+    
     $(window).scroll(pol.scrollspy);
     //$('body').scrollspy({ target: '#navbar' })
 
@@ -348,7 +352,11 @@
     });
 
     // decorate section contents
-    setTimeout(function(){$("#footer").trigger('scroll.ScrollToFixed')}, 100);
+    setTimeout(function(){
+
+      
+      $("#footer").trigger('scroll.ScrollToFixed');
+    }, 100);
 	});
 
 }(window, Handlebars, jQuery));

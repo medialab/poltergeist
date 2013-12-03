@@ -513,6 +513,35 @@ coreHelpers = function (ghost) {
 
         return new hbs.handlebars.SafeString(content);
     });
+    
+    ghost.registerThemeHelper('aime_title_excerpt', function (options) {
+      var truncateOptions = (options || {}).hash || {},
+            excerpt;
+
+        truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
+
+        /*jslint regexp:true */
+        excerpt = String(this.title).replace(/<\/?[^>]+>/gi, '');
+        /*jslint regexp:false */
+
+        if (!truncateOptions.words && !truncateOptions.characters) {
+            truncateOptions.words = 10;
+        }
+
+        excerpt = downsize(excerpt, truncateOptions)
+          .replace(/{([^#]*)#(\d+)}/g, function(a, title, id) {
+            return "<span class='link doc' data-id='ref-" + id.replace(/\s/,'') + "'>" + title.replace(/\s$/,'') + "</span>";
+          })
+          .replace(/\[[^\]]*\]/g, function(s) {
+            return "<span class='modes'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
+          }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g, function(s) {
+            return "<span class='smallcaps'>" + s + "</span>"
+          });
+
+        return new hbs.handlebars.SafeString(
+          excerpt
+        );
+    });
 
     /**
      * If Equals

@@ -4,9 +4,11 @@
   "header.project": "the project",
   "en": "en",
   "fr": "fr",
-  "header.phases": "header.phases",
-  "header.blog": "header.blog",
-  "header.tools": "header.tools",
-  "header.network": "header.network",
-  "header.faq": "header.faq"
+  "header.phases": "the phases",
+  "header.blog": "the blog",
+  "header.tools": "the tools",
+  "header.network": "the network",
+  "header.faq": "faq",
+  "tools.report": "the report",
+  "tools.platform": "the platform"
 }

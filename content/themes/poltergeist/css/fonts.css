@@ -184,4 +184,6 @@
 }
 
 @font-face {font-family: "NovelSansPro-SemiBold";src: url("/fonts/237E72_11_0.eot");src: url("/fonts/237E72_11_0.eot?#iefix") format("embedded-opentype"),url("/fonts/237E72_11_0.woff") format("woff"),url("/fonts/237E72_11_0.ttf") format("truetype");}
- 
+
+@font-face {font-family: 'NovelMonoPro-Bold';src: url('/fonts/237E72_1B_0.eot');src: url('/fonts/237E72_1B_0.eot?#iefix') format('embedded-opentype'),url('/fonts/237E72_1B_0.woff') format('woff'),url('/fonts/237E72_1B_0.ttf') format('truetype');}
+

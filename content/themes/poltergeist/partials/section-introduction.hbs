@@ -1,7 +1,7 @@
 
-<section>
+<section class="introduction">
   <h1>How do we compose a common world?</h1>
-  <div class="content">
+  <div class="content sweet-justice">
     <p>
       Not so long ago, the project that would have seen modernization spread over the whole planet came up against unexpected opposition from the planet itself. Should we give up, deny the problem, or grit our teeth and hope for a miracle?
     </p>
@@ -18,6 +18,7 @@
     <div style="float: left; width:50%; text-align:center">
       <h3>latest from twitter</h3>
       <div id="tweets"></div>
+      <div class="ellipsis mode">[...]</div>
     </div>
     <div style="margin-left:50%;width:50%; text-align:center">
       <h3>latest from the blog</h3>
@@ -26,7 +27,8 @@
       {{#if @first}}
       <a href="/{{slug}}">
           <div class="published_at">{{date published_at format="DD.MM.YYYY"}}</div>
-          <h4>{{{decorate title}}}</h4>
+          <h4>{{{aime_title_excerpt characters='140'}}}</h4>
+          <div class="ellipsis mode">[...]</div>
       </a>
       {{/if}}
       {{/foreach}}

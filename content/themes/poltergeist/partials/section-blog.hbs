@@ -11,10 +11,12 @@
 
   {{#foreach posts}}
   <div class="post-thumbnail">
-    <a href="/{{slug}}">
-      
-        <div class="published_at">{{date published_at format="DD.MM.YYYY"}}</div>
-        <h4>{{{decorate title}}}</h4>
+    <a href="{{url}}" title="{{title}}">
+      <h2 style="margin-left:40px; margin-right:40px">{{{decorate title}}}</h2>
+      <h5>{{date published_at format="DD MMMM YYYY"}}</h5>
+      <div class="content">
+        <p>{{{decorate title}}}</p>
+      </div>
     </a>
   </div>
 {{/foreach}}

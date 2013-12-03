@@ -245,6 +245,16 @@ blockquote  {
   }
 }
 
+.mode{
+  font-family: 'NovelMonoPro-Bold', sans-serif;
+  .smallcaps();
+}
+
+.ellipsis{
+  font-size: 1.0rem;
+  text-align: center;
+}
+
 section{
   width: @page_width;
   margin: 0 auto;
@@ -261,6 +271,8 @@ section{
       p{
         margin: 0 0 10px 0;
       }
+
+
     }
   }
 
@@ -279,8 +291,7 @@ section{
      font-family: "NovelSansPro-Regular", sans-serif;
      font-size: 1.4rem;
      line-height: 1.618em;
-     text-align: center;
-    .smallcaps();
+     
 
     .bold{
       font-family: "NovelSansPro-Semibold", sans-serif;
@@ -289,16 +300,18 @@ section{
   }
 
   h3{
+    text-align: center;
     margin: 0 30px;
     border-bottom: 1px solid @grey-d;
+    .smallcaps();
   }
 
   h4{
     font-size: 1.2rem;
     color: @black;
-    height: 1.618em * 3;
-    overflow: hidden;
     margin: 0 40px;
+
+    
   }
 
   h5{
@@ -307,8 +320,61 @@ section{
   }
 
   h6{
-
+    text-align: center;
+    .smallcaps();
   }
+  .part{
+    //margin-top: 20px;
+
+    h5, h6{
+      .smallcaps();
+      text-align: center;
+    }
+  }
+
+  img.floating{
+    width: 50%;
+    float: left;
+    margin-right:10px;
+  }
+
+
+  .exagon{
+    position: relative;
+    height: 150px;
+    font-family: 'NovelSansPro-Light', sans-serif;
+    font-size: 2.4rem;
+    line-height: 38px;
+
+    color: @red;
+    .smallcaps();
+
+    .first-name{
+      position:absolute;
+      top:50%;
+      width: 50%;
+      right: 50%;
+      margin-right: 75px;
+      text-align: right;
+      margin-top: -16px;
+    } 
+    .last-name{
+      position:absolute;
+      top: 50%;
+      
+      left: 50%;
+      margin-left: 75px;
+      margin-top: -16px;
+    }
+    img{
+      position:absolute;
+      width: 150px;
+      left: 50%;
+      margin-left: -75px;
+      
+    }    
+  }
+
   .published_at{
     font-size: 1.1rem;
     line-height: 1em;
@@ -335,6 +401,20 @@ section{
     p{
       margin: 0;
     }
+
+    .anchor{
+      top: -@menu_height - @secondary_menu_height - 12px;
+    }
+  }
+
+  &.introduction{
+    margin-bottom: 20px;
+    .content{
+      font-size: 1.6rem;
+    }
+    .middot{
+      margin: 20px 0;
+    }
   }
 
   .tweet{
@@ -342,7 +422,17 @@ section{
       font-family: "NovelSansPro-SemiBold", sans-serif;
       .smallcaps();
     }
+
   }
+  #tweets{
+    height: 110px;
+    overflow: hidden
+  }
+  .mode{
+    text-align: center;
+  }
+
+  
 }
 
 .menu{
@@ -394,15 +484,11 @@ section{
   .smallcaps();
   
   ul{
-    padding-top: 60px;
+    padding-top: 150px;
     list-style-type: none;
   }
 }
 
-.post-thumbnail{
-  float: left;
-  width: 50%;
-}
 
 #secondary-menu{
   width: 100%;
