@@ -24,18 +24,11 @@ var Ghost        = require('../ghost'),
 
 // ## Posts
 posts = {
-    // #### Search
+    // #### Get by tag
     // **takes:** filter
-    search: function search(options) {
-      return dataProvider.Post.findAll(options).then(function (result) {
-            var i = 0,
-                omitted = result;
-
-            for (i = 0; i < omitted.posts.length; i = i + 1) {
-                omitted.posts[i].author = _.omit(omitted.posts[i].author, filteredUserAttributes);
-                omitted.posts[i].user = _.omit(omitted.posts[i].user, filteredUserAttributes);
-            }
-            return omitted;
+    getbytag: function getbytag(options) {
+      return dataProvider.Post.findByTag(options).then(function (result) {
+            return result;
         });
     },
     // #### Browse
