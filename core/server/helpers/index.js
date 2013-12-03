@@ -477,17 +477,14 @@ coreHelpers = function (ghost) {
         );
     });
 
+    ghost.registerThemeHelper('siteurl', function (options) {
+      return ghost.config().url;
+    });
+
 
     ghost.registerThemeHelper('aime_content', function (options) {
         var truncateOptions = (options || {}).hash || {},
-            content;
-
-        truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
-
-        if (truncateOptions.words || truncateOptions.characters)
-          content = downsize(this.html, truncateOptions);
-        else
-          content = this.html;
+            content = this.html;
         
         var lang = i18n.getLocale();
         var splitted = content.replace(/^[\s\r\n]+/,"").split(/<!--\s+(en|fr)\s+-->/g).slice(1);
@@ -497,19 +494,26 @@ coreHelpers = function (ghost) {
             if(splitted[u]=='en') contents.en = splitted[+u+1];
             if(splitted[u]=='fr') contents.fr = splitted[+u+1];
           }
-          content = contents[lang];
+          content = contents[lang] || content;
         } catch(err) {
           console.log("no lang: ",err);
         }
 
-        content = content.replace(/{([^#]*)#(\d+)}/g, function(a, title, id) {
-            return "<span class='link doc' data-id='ref-" + id.replace(/\s/,'') + "'>" + title.replace(/\s$/,'') + "</span>";
-          })
-          .replace(/\[[^\]]*\]/g, function(s) {
-            return "<span class='modes'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
-          }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g, function(s) {
-            return "<span class='smallcaps'>" + s + "</span>"
-          });
+        truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
+
+        if (truncateOptions.words || truncateOptions.characters)
+          content = downsize(content, truncateOptions);
+
+        // temp comment following to avoid breaking images [im.jpg] links
+
+        // content = content.replace(/{([^#]*)#(\d+)}/g, function(a, title, id) {
+        //     return "<span class='link doc' data-id='ref-" + id.replace(/\s/,'') + "'>" + title.replace(/\s$/,'') + "</span>";
+        //   })
+        //   .replace(/\[[^\]]*\]/g, function(s) {
+        //     return "<span class='modes'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
+        //   }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g, function(s) {
+        //     return "<span class='smallcaps'>" + s + "</span>"
+        //   });
 
         return new hbs.handlebars.SafeString(content);
     });

@@ -8,5 +8,7 @@
   "header.blog": "header.blog",
   "header.tools": "header.tools",
   "header.network": "header.network",
-  "header.faq": "header.faq"
+  "header.faq": "header.faq",
+  "sign up": "inscription",
+  "log in": "connexion"
 }
