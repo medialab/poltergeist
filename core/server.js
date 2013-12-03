@@ -29,13 +29,13 @@ server.configure(function() {
 });
 // ##Custom i18n configuration
 i18n.configure({
-    locales:['en', 'fr'],
-    defaultLocale: 'fr',
+    locales:['en','fr'],
+    defaultLocale: 'en',
     directory: __dirname + '/../content/locales',
     indent: "  "
 });
 
-console.log('lang test'.green, i18n.__('LANG_TEST'));
+//console.log('lang test'.green, i18n.__('LANG_TEST'));
 
 // ### Auth Middleware
 // Authenticate a request by redirecting to login if not logged in.

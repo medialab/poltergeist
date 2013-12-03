@@ -493,7 +493,7 @@ coreHelpers = function (ghost) {
     ghost.registerThemeHelper('aime_content', function (options) {
         var truncateOptions = (options || {}).hash || {},
             content = this.html;
-        
+
         var lang = i18n.getLocale();
         var splitted = content.replace(/^[\s\r\n]+/,"").split(/<!--\s+(en|fr)\s+-->/g).slice(1);
         var contents = {};
@@ -509,8 +509,10 @@ coreHelpers = function (ghost) {
 
         truncateOptions = _.pick(truncateOptions, ['words', 'characters']);
 
-        if (truncateOptions.words || truncateOptions.characters)
+        if (truncateOptions.words || truncateOptions.characters) {
+          content = String(content).replace(/<\/?[^>]+>/gi, '');
           content = downsize(content, truncateOptions);
+        }
 
         // temp comment following to avoid breaking images [im.jpg] links
 

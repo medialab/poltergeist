@@ -1,19 +1,12 @@
 {
-  "LANG_TEST": "i18n marche (FR)",
-  "Test": "test pour la langue etrangere",
-  "header.project": "projet",
-  "fr": "fr",
-  "en": "en",
+  "header.project": "header.project",
   "header.phases": "header.phases",
   "header.blog": "header.blog",
   "header.tools": "header.tools",
   "header.network": "header.network",
   "header.faq": "header.faq",
-  "sign up": "inscription",
-  "log in": "connexion",
-  "the phases": "phases",
-  "the blog": "blog",
-  "the tools": "outils",
-  "the network": "réseau",
-  "faq": "faq"
+  "log in": "log in",
+  "sign up": "sign up",
+  "fr": "fr",
+  "en": "en"
 }
