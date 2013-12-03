@@ -481,6 +481,14 @@ coreHelpers = function (ghost) {
       return ghost.config().url;
     });
 
+    ghost.registerThemeHelper('aime_title', function (options) {        
+        var lang = i18n.getLocale();
+        var splitted = this.title.split(/\/\//g);
+        if(splitted.length==2)
+          return splitted[lang=='en' ? 0 : 1];
+        else
+          return this.title;
+    });
 
     ghost.registerThemeHelper('aime_content', function (options) {
         var truncateOptions = (options || {}).hash || {},

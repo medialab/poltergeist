@@ -8,5 +8,12 @@
   "header.blog": "header.blog",
   "header.tools": "header.tools",
   "header.network": "header.network",
-  "header.faq": "header.faq"
+  "header.faq": "header.faq",
+  "the phases": "the phases",
+  "the blog": "the blog",
+  "the tools": "the tools",
+  "the network": "the network",
+  "faq": "faq",
+  "log in": "log in",
+  "sign up": "sign up"
 }

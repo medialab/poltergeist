@@ -3,3 +3,4 @@
 *.db
 config.js
 node_modules
+migration
