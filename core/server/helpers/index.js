@@ -1,8 +1,8 @@
 var _           = require('underscore'),
+    i18n        = require('i18n'),
     moment      = require('moment'),
     downsize    = require('downsize'),
     when        = require('when'),
-    i18n        = require('i18next'),
     hbs         = require('express-hbs'),
     packageInfo = require('../../../package.json'),
     errors      = require('../errorHandling'),
@@ -502,13 +502,26 @@ coreHelpers = function (ghost) {
     });
 
     /**
+     * If Equals
+     * if_eq this compare=that
+     */
+    ghost.registerThemeHelper('if_eq', function(context, options) {
+        if (context == options.hash.compare)
+            return options.fn(this);
+        return options.inverse(this);
+    });
+
+    /**
      * [ description]
      * @param  {String} locale key
      */
     ghost.registerThemeHelper('t', function(key){
-      return i18n.t(key);
+      return i18n.__(key);
     });
 
+    ghost.registerThemeHelper('getlocale', function(key){
+      return i18n.__(i18n.getLocale());
+    });
     // Return once the template-driven helpers have loaded
     return when.join(
         paginationHelper

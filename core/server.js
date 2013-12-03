@@ -1,5 +1,6 @@
 // Module dependencies
 var express     = require('express'),
+    i18n        = require('i18n'),
     when        = require('when'),
     _           = require('underscore'),
     colors      = require('colors'),
@@ -23,6 +24,18 @@ var express     = require('express'),
     ghost = new Ghost();
 
 // ##Custom Middleware
+server.configure(function() {
+  server.use(i18n.init);
+});
+// ##Custom i18n configuration
+i18n.configure({
+    locales:['en', 'fr'],
+    defaultLocale: 'fr',
+    directory: __dirname + '/../content/locales',
+    indent: "  "
+});
+
+console.log('lang test'.green, i18n.__('LANG_TEST'));
 
 // ### Auth Middleware
 // Authenticate a request by redirecting to login if not logged in.
