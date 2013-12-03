@@ -29,13 +29,13 @@ server.configure(function() {
 });
 // ##Custom i18n configuration
 i18n.configure({
-    locales:['en', 'fr'],
-    defaultLocale: 'en',
-    directory: __dirname + '/../content/locales',
-    indent: "  "
+  locales:['en', 'fr'],
+  defaultLocale: 'en',
+  directory: __dirname + '/../content/locales',
+  indent: "  "
 });
 
-console.log('lang test'.green, i18n.__('LANG_TEST'));
+//console.log('lang test'.green, i18n.__('LANG_TEST'));
 
 // ### Auth Middleware
 // Authenticate a request by redirecting to login if not logged in.
@@ -383,9 +383,9 @@ when(ghost.init()).then(function () {
     server.get('/rss/:page/', frontend.rss);
     server.get('/blog/', frontend.blog);
     server.get('/page/:page/', frontend.blog);
-    server.get('/search/:query/', frontend.search);
     server.get('/:slug/', frontend.single);
-    server.get('/tag/:slug/', frontend.tag);
+    //server.get('/search/:query/', frontend.search);
+    server.get('/tag/:tag/', frontend.tag);
     server.get('/', frontend.homepage);
 
     // Are we using sockets? Custom socket or the default?
