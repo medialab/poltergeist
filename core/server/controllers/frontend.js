@@ -5,6 +5,7 @@
 /*global require, module */
 
 var Ghost  = require('../../ghost'),
+    i18n   = require('i18n'), 
     api    = require('../api'),
     RSS    = require('rss'),
     _      = require('underscore'),
@@ -18,6 +19,11 @@ var Ghost  = require('../../ghost'),
     frontendControllers;
 
 frontendControllers = {
+    'setlang': function (req, res, next) {
+      i18n.setLocale(req.params.lang);
+      return res.redirect('/');
+    },
+    
     'homepage': function (req, res, next) {
         // Parse the page number
         var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,

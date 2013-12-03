@@ -376,6 +376,9 @@ when(ghost.init()).then(function () {
 
     // ### Frontend routes
     /* TODO: dynamic routing, homepage generator, filters ETC ETC */
+
+    server.get('/lang/:lang/', frontend.setlang);
+
     server.get('/rss/', frontend.rss);
     server.get('/rss/:page/', frontend.rss);
     server.get('/blog/', frontend.blog);

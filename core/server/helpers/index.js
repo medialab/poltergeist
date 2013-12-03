@@ -489,6 +489,19 @@ coreHelpers = function (ghost) {
         else
           content = this.html;
         
+        var lang = i18n.getLocale();
+        var splitted = content.replace(/^[\s\r\n]+/,"").split(/<!--\s+(en|fr)\s+-->/g).slice(1);
+        var contents = {};
+        try {
+          for(u in splitted) {
+            if(splitted[u]=='en') contents.en = splitted[+u+1];
+            if(splitted[u]=='fr') contents.fr = splitted[+u+1];
+          }
+          content = contents[lang];
+        } catch(err) {
+          console.log("no lang: ",err);
+        }
+
         content = content.replace(/{([^#]*)#(\d+)}/g, function(a, title, id) {
             return "<span class='link doc' data-id='ref-" + id.replace(/\s/,'') + "'>" + title.replace(/\s$/,'') + "</span>";
           })
