@@ -1,31 +1,31 @@
 #### PRO
 
-- easy markdown ! _links_ *styles* [link](http://modesofexistence.org)
-- super light code + fast ( simple node.js + nosql)
-- disqus features
-  - no registration possible
-    - comments need approval 
+- easy markdown ! _links_ *styles* [link](http://modesofexistence.org) !(igs)[]
+- super light code + fast + movable ( simple node.js + sqlite )
+- disqus features (comments)
+  - disqus allows: 
+    - registration not required
+    - moderation
   - spam detection
-    - import from wordpress (?)
-
 - post date, tags
-- easy customisable (handlebars)
-- import posts from wordpress (using plugin)
-  - keep post date, tags
+- easy CUSTOMISABLE (handlebars + less)
 
 #### AGAINST
 
+- no static page
+- no category
 - no index page (only pagination) but (done) easy to distinguish routes / vs /page/n
 - disqus comments on the cloud
 - simple metadata (no author by article)
 - features to wait for:
+  - posts by tag (we already added it)
   - multilanguage
   - search
 
 #### Migration
 
 - posts (~50)
-  - use ghost export WP plugin > .json
+  - use ghost export WP plugin > .json (date, tags)
     - /ghost/debug to import
 - media (~40)
   - use cloudinary.com to export all medias
