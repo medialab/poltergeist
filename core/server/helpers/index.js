@@ -567,13 +567,28 @@ coreHelpers = function (ghost) {
         return options.inverse(this);
     });
 
+    ghost.registerThemeHelper('split_each', function(context, options) {
+      var ret = "",
+          split = context.split(",");
+
+      for(var i=0, j=split.length; i<j; i++) {
+        ret = ret + options.fn(split[i]);
+      }
+
+      return ret;
+    });
+
     /**
      * [ description]
      * @param  {String} locale key
      */
-    ghost.registerThemeHelper('t', function(key){
-      return i18n.__(key);
+    ghost.registerThemeHelper('t', function(key, options){
+      var k = key;
+      if(typeof options == "string")
+        k = key.replace('%s',options);
+      return i18n.__(k);
     });
+
 
     ghost.registerThemeHelper('getlocale', function(key){
       return i18n.__(i18n.getLocale());

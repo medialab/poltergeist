@@ -1,83 +1,15 @@
 
   <div class="content">   
-    
-    <div class="exagon">
-      <div class="first-name">bruno</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">latour</div>
-    </div>
-    <h6>@AIMEproject</h6>
-    <p>
-      Professor at Sciences Po, Paris. He decided on this unusual way to do research after having carried out several fieldwork studies in the domains of the science and legal techniques. Having directed two international exhibitions (Iconoclash 2002 and Making Things Public at the <span class="smallcaps">ZKM</span> in Karlsruhe 2005), he found he had a taste for collective work and the exploration of new modes of research and presentation in what are called “the humanities”. In the jargon of research projects, he is the <span class="smallcaps">PI</span> (“principal investigator”) of the <span class="smallcaps">AIME</span> project, which means he has a hand in everything without knowing very much.
-    </p>
+    {{#split_each "latour,leclercq,ricci,girard,guido,jacomy"}}
+      <div class="exagon">
+        <div class="first-name">{{t "network.member.%s.firstname" this}}</div>
+        <img src="images/{{t "network.member.%s" this}}.png">
+        <div class="last-name">{{t "network.member.%s.lastname" this}}</div>
+      </div>
+      <h6>{{t "network.member.%s.twitter" this}}</h6>
+      <p>
+        {{t "network.member.%s.bio" this}}
+      </p>
 
-    <div class="exagon">
-      <div class="first-name">christophe</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">leclercq</div>
-    </div>
-    <h6>twitter?</h6>
-    <p>
-      Is a research scholar in the history of the most contemporary arts. He joined the project as project manager. As well as all the financial issues, day-to-day operations, organisation of the project and contact with institutions, he is exploring how new digital tools can inspire artists and energise their work in the context of this collective inquiry. He hopes that all the new software and modes of collaboration will allow for future methodological changes in the history of the sciences…and hopes to finish his thesis.
-    </p>
-
-    <div class="exagon">
-      <div class="first-name">donato</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">ricci</div>
-    </div>
-    <h6>@optichiasm</h6>
-    <p>
-      He has a Ph.D in communication design and specializes in the visual display of huge amounts of digital data. He is passionate about semiology and diagrams, and has joined the team in the hope of producing a hybrid of the great tradition of Italian design (he comes from Density Design de Milan) and the digital humanities, so as to produce a new standard for the future scholarly book. His thesis on social complexity and controversies is a perfect preparation for this project, which he still finds completely crazy!
-    </p>
-
-    <div class="exagon">
-      <div class="first-name">paul</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">girard</div>
-    </div>
-    <h6>twitter?</h6>
-    <p>
-      Paul joined the Medialab team at Sciences Po since it began in 2009. His enthusiasm allied with his technical and organizational skills, has meant that Medialab has become one of France’s most active research centers investigating the links between the social sciences and the IT world. Being involved in every technical decision made by Medialab, he was immediately involved as an advisor in the <span class="smallcaps">AIME</span> project. However, as the project grappled with the enormous difficulties and new challenges presented by the ‘digital humanities’ he rapidly took on the role of technical director. If this project can be said to work, it is certainly because thanks to Paul finding a way to coordinate the various professions needed to make this insane endeavor work.
-    </p>
-
-    <div class="exagon">
-      <div class="first-name">daniele</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">guido</div>
-    </div>
-    <h6>twitter?</h6>
-    <p>
-      Since the very beginning, Daniele has brought his design and programming expertise to Medialab’s digital projects as well as those for Sciences Po. He has given the project the sheen and high quality and that allows us to genuinely talk about ‘digital bibliophilia’. As he is also working on other projects at Sciences Po, he has also been playing an important role in making this institution one of the most promising sites yet for development of the ‘digital humanities’.
-    </p>
-
-    <div class="exagon">
-      <div class="first-name">alexis</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">jacomy</div>
-    </div>
-    <h6>@jacomyal</h6>
-    <p>
-      A recent member of the <span class="smallcaps">IT</span> team, Alexis, who came to us from
-      Linkfluence, a company with which Medialab has numerous ties, has
-      given an important impetus to those programs vital to the project’s
-      success by bringing to bear some of the work practices common in
-      industry  - and somewhat different we have to admit - to the
-      innovative but not always particularly disciplined habits of our team.
-    </p>
-
-    <div class="exagon">
-      <div class="first-name">pierre</div>
-      <img src="images/bruno-latour.png">
-      <div class="last-name">julian de la fuente</div>
-    </div>
-    <h6>@pj</h6>
-    <p>
-      A recent member of the <span class="smallcaps">IT</span> team, Alexis, who came to us from
-      Linkfluence, a company with which Medialab has numerous ties, has
-      given an important impetus to those programs vital to the project’s
-      success by bringing to bear some of the work practices common in
-      industry  - and somewhat different we have to admit - to the
-      innovative but not always particularly disciplined habits of our team.
-    </p>
+    {{/split_each}}
   </div>
