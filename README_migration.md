@@ -22,7 +22,9 @@
   - multilanguage
   - search
 
-#### Migration
+### Migration 
+
+#### Data
 
 - posts (~50)
   - use ghost export WP plugin > .json (date, tags)
@@ -33,3 +35,8 @@
   - migrate to disqus using WP plugin
     - build .csv with urls correspondances
     - disqus > tools > import .csv
+
+#### Code customised in core
+
+- `/` route to our theme pages
+- `/tag/:slug` to list of posts tagged _slug_

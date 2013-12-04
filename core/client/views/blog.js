@@ -83,7 +83,7 @@
                 data: {
                     status: 'all',
                     page: (self.collection.currentPage + 1),
-                    orderBy: ['updated_at', 'DESC']
+                    orderBy: ['published_at', 'DESC']
                 }
             }).then(function onSuccess(response) {
                 self.render();

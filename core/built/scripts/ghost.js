@@ -17984,7 +17984,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
                 data: {
                     status: 'all',
                     page: (self.collection.currentPage + 1),
-                    orderBy: ['updated_at', 'DESC']
+                    orderBy: ['published_at', 'DESC']
                 }
             }).then(function onSuccess(response) {
                 self.render();
@@ -19895,7 +19895,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
         blog: function () {
             var posts = new Ghost.Collections.Posts();
-            posts.fetch({ data: { status: 'all', orderBy: ['updated_at', 'DESC'] } }).then(function () {
+            posts.fetch({ data: { status: 'all', orderBy: ['published_at', 'DESC'] } }).then(function () {
                 Ghost.currentView = new Ghost.Views.Blog({ el: '#main', collection: posts });
             });
         },
