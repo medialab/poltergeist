@@ -17,7 +17,6 @@
   pol.DEBUG_INFO = 3; // will show pol.log() stuff
   pol.DEBUG_ERROR = 4; // will show error only
 
-
   /*
 
       namespaces
@@ -26,6 +25,15 @@
   */
   pol.templates = {};
   pol.timers = {}; // timeout ids, keys are function names
+  pol.listen = {};
+  pol.cached = {};
+  pol.events = {
+    checkpoint_root_changed: 'pol_checkpoint_root_changed',
+    checkpoint_root_discarded: 'pol_checkpoint_root_discarded',
+    checkpoint_changed: 'pol_checkpoint_changed',
+    checkpoint_scroll: 'checkpoint_scroll'
+  };
+
 
   /*
       
@@ -36,43 +44,7 @@
   pol.checkpoints = []; // cfr. pol.scrollspy 
   pol.previous_checkpoint = '';// cfr. pol.scrollspy 
 
-  /*
-
-      Logs
-      ====
-
-  */
-  pol.log = function(){
-    if(pol.debug >= pol.DEBUG_INFO){
-      try{
-        var args = ['\t'].concat(Array.prototype.slice.call(arguments));
-        console.log.apply(console, args);
-      } catch(e){}
-    }
-  };
-
-  pol.verbose = function(){
-    if(pol.debug >= pol.DEBUG_VERBOSE){
-      var index = '          ';
-      pol.debug_index = pol.debug_index || 0;
-      pol.debug_index++;
-      index = index + pol.debug_index;
-
-      try{
-        var args = ['\t', index.substr(-6)].concat(Array.prototype.slice.call(arguments));
-        console.log.apply(console, args);
-      } catch(e){}
-    }
-  };
-
-  pol.error = function(){
-    try{
-        var args = ['   /\\  \n  /  \\\n / !! \\ poltergeist error:'].concat(Array.prototype.slice.call(arguments));
-        args.push('\n/______\\');
-        console.log.apply(console, args);
-    } catch(e){}
-  };
-
+ 
 
   
 
@@ -158,18 +130,15 @@
     
 
 
-    pol.footer = $('#footer');
-
-    pol.footer.length && pol.footer.scrollToFixed({
+    pol.cached.footer.length && pol.cached.footer.scrollToFixed({
       bottom: 0,
       marginTop: 95,
-      limit: pol.footer.offset().top,
-      zIndex: 1003
+      limit: pol.cached.footer.offset().top
     });
 
-    /* @todo?$('#blog-menu').scrollToFixed({
+   /* $('#blog-menu').scrollToFixed({
       marginTop: 96,
-      limit: pol.footer.offset().top - 40,//$("section.below").first().offset().top - 100,
+      limit: pol.cached.footer.offset().top,//$("section.below").first().offset().top - 100,
       zIndex: 1000
     });*/
   };
@@ -196,7 +165,7 @@
         target = $('a.to-anchor[href="/'+hashes.join('/')+'"]'), // direct target, full hash
         parent_target;
 
-    pol.verbose('(pol.hashchange)', location.hash, 'a.to-anchor[href="/'+hashes.join('/')+'"]');
+    pol.log('(pol.hashchange)', location.hash, 'a.to-anchor[href="/'+hashes.join('/')+'"]');
     
     
 
@@ -212,17 +181,30 @@
       $('a.to-anchor[href="/'+hashes.join('/')+'"]').addClass('active')
     }
 
+
     
   };
 
   /*
       activate current anchor links, with href param of anchor elemnet
   */
-  pol.anchorify = function(href){
-    var hashes = href.split('/'),
+  pol.anchorify = function(checkpoint) {
+    var hashes = checkpoint.id.split('/'),
         target = $('a.to-anchor[href="/'+hashes.join('/')+'"]');
 
     pol.verbose('(pol.anchorify)', hashes);
+    
+    if(!pol.previous_checkpoint_root){
+      pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
+    } else if(pol.previous_checkpoint_root && hashes[0] != '#' + pol.previous_checkpoint_root.root) {
+      pol.verbose('... new ROOT checkpoint:', checkpoint.root);
+      if(pol.previous_checkpoint_root)
+        pol.trigger(pol.events.checkpoint_root_discarded, pol.previous_checkpoint_root);
+      pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
+    }
+
+    pol.previous_checkpoint_root = checkpoint;
+
 
     if(!target.length)
       return;
@@ -278,23 +260,83 @@
     
     if(checkpoint && checkpoint != pol.previous_checkpoint) {
       pol.log('(pol.scrollspy) new checkpoint:', checkpoint);
-      pol.anchorify(checkpoint.id);
+      pol.anchorify(checkpoint);
+      pol.trigger(pol.events.checkpoint_changed, checkpoint);
     }
     pol.previous_checkpoint = checkpoint;
 
     // evaluate footer
-    // pol.footer.position().top
-  } 
+    // pol.cached.footer.position().top
+  }
+
+
+  
+
+  pol.listen.checkpoint_changed= function(event, checkpoint) {
+    pol.log('(pol.listen.checkpoint_changed)', checkpoint);
+  };
+
+  pol.listen.checkpoint_root_discarded = function(event, checkpoint_discarded) {
+    pol.log('(pol.listen.checkpoint_root_discarded)', checkpoint_discarded);
+    switch(checkpoint_discarded.root){
+      case 'the-blog':
+        pol.colorify('#ffffff');
+        break;
+    }
+  };
+
+  pol.listen.checkpoint_root_changed = function(event, checkpoint) {
+    pol.verbose('(pol.listen.checkpoint_root_changed)', checkpoint.root);
+    pol.cached.wrapper.attr('data-checkpoint', checkpoint.root);
+
+    switch(checkpoint.root){
+      case 'introduction':
+      case 'the-project':
+        pol.cached.footer.removeClass('active');
+        break;
+      case 'the-blog':
+        pol.colorify('#ededed');
+        pol.cached.footer.addClass('active');
+        break;
+      default:
+        pol.cached.footer.addClass('active');
+        break;
+
+    }
+  }
+
+  pol.listen.checkpoint_scroll = function(){
+
+  }
 
   /*
-    
-      Init function, on document ready
-      ===
+    Change color to main home page. Used in conjunction with checkpoints!
   */
-	$(window).load(function(){
-    pol.debug = pol.DEBUG_INFO;
+  pol.colorify = function(color) {
+    pol.cached.wrapper.animate({backgroundColor: color});
+    pol.cached.footer.find('.inner').animate({backgroundColor: color});
+    pol.cached.menu.find('.inner').animate({backgroundColor: color});
+  };
 
+  pol.onload = function(event) {
+    pol.debug = pol.DEBUG_INFO;
     pol.height = $(window).height();
+
+    // enable 'default' events
+    pol.log('(pol.onload) Poltergeist loaded');
+    
+    // add jquery element to cache
+    pol.cached.wrapper = $("#wrapper");
+    pol.cached.footer = $("#footer");
+    pol.cached.menu = $("#secondary-menu");
+
+    for(var i in pol.events){
+      pol.on(pol.events[i], pol.listen[i]);
+    }
+
+    
+   
+    
   
     $('p').css('text-align', 'justify').hyphenate('en-us');
 
@@ -319,9 +361,13 @@
     
     pol.checkpoints = []// array of paragraphs
     $("a.anchor").each(function(i,e){
-      var el = $(this);
+      var el = $(this),
+          anchor_id = el.attr('id');
+
       pol.checkpoints.push({
-        id: '#' + el.attr('id').replace(/--/g,'/'),
+        id: '#' + anchor_id.replace(/--/g,'/'),
+        root: anchor_id.split('--').shift(),
+        name: anchor_id,
         top: el.offset().top
       });
     });
@@ -371,10 +417,65 @@
 
     // decorate section contents
     setTimeout(function(){
+      pol.colorify('#ffffff');
       pol.resize();
-      
-      $("#footer").trigger('scroll.ScrollToFixed');
+      pol.scrollspy();
+      pol.cached.footer.trigger('scroll.ScrollToFixed');
     }, 100);
-	});
+	};
+
+  
+
+  /*
+
+      Logs and utils
+      ====
+
+  */
+  pol.log = function(){
+    if(pol.debug >= pol.DEBUG_INFO){
+      try{
+        var args = ['\t'].concat(Array.prototype.slice.call(arguments));
+        console.log.apply(console, args);
+      } catch(e){}
+    }
+  };
+
+  pol.verbose = function(){
+    if(pol.debug >= pol.DEBUG_VERBOSE){
+      var index = '          ';
+      pol.debug_index = pol.debug_index || 0;
+      pol.debug_index++;
+      index = index + pol.debug_index;
+
+      try{
+        var args = ['\t', index.substr(-6)].concat(Array.prototype.slice.call(arguments));
+        console.log.apply(console, args);
+      } catch(e){}
+    }
+  };
+
+  pol.error = function(){
+    try{
+        var args = ['   /\\  \n  /  \\\n / !! \\ poltergeist error:'].concat(Array.prototype.slice.call(arguments));
+        args.push('\n/______\\');
+        console.log.apply(console, args);
+    } catch(e){}
+  };
+
+  pol.on = function (eventType, callback) {
+    $(window).on(eventType, callback);
+  };
+
+  pol.trigger = function (eventType, data) {
+    $(window).trigger(eventType, data);
+  };
+
+  /*
+    
+      Init function, on WINDOW ready (because of webfonts!)
+      ===
+  */
+  $(window).load(pol.onload);
 
 }(window, Handlebars, jQuery));

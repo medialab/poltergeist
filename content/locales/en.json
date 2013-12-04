@@ -1,25 +1,21 @@
 {
   "LANG_TEST": "i18n working",
   "Test": "test of foreign language",
-  
   "en": "en",
   "fr": "fr",
-
   "header.project": "what",
   "header.phases": "when",
   "header.blog": "blog",
   "header.tools": "how",
   "header.network": "who",
   "header.faq": "faq",
-
   "tools.report": "the report",
   "tools.platform": "the platform",
-
   "log in": "log in",
   "sign up": "sign up",
-  
   "blog.category.events": "events",
   "blog.category.qa": "discuss",
   "blog.category.resources": "materials",
-  "blog.category.all": "all posts"
+  "blog.category.all": "all posts",
+  "join the enquiry": "join the enquiry"
 }

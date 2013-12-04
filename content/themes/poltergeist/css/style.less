@@ -108,6 +108,12 @@ a {
     
   }
 
+  &.button{
+    font-family: 'NovelSansPro-Regular';
+    font-size: 1.2rem;
+    .smallcaps();
+  }
+
   &.active{
     border-bottom: 1px solid @red;
   }
@@ -229,9 +235,8 @@ blockquote  {
   margin: 0;
   padding: 0;
 	width: 100%;
-  height: 100%;
+  // height: 100%;
   position:relative;
-  
 }
 
 .anchor{
@@ -279,10 +284,10 @@ section{
   &.introduction{
     margin-bottom: 20px;
     .content{
-      font-size: 1.6rem;
+      //font-size: 1.6rem;
     }
     .middot{
-      margin: 20px 0;
+      margin: 10px 0;
     }
   }
 
@@ -432,13 +437,7 @@ section{
       .smallcaps();
     }
 
-    .published_at{
-      font-size: 1.1rem;
-      line-height: 1em;    
-      margin: 10px auto;
-      border-bottom: 1px solid @red;
-      width: 80px;
-    }
+    
   }
 
   #tweets{
@@ -510,7 +509,6 @@ section{
 #secondary-menu{
   width: 100%;
   height: @secondary_menu_height;
-  background-color: white;//@grey-f;
   font-family: "NovelSansPro-Light", sans-serif;
   font-size: 1.1rem;
   line-height: @secondary_menu_height;
@@ -529,7 +527,7 @@ section{
     width: @page_width;
     height: @secondary_menu_height;
     border-bottom: 1px solid transparent;
-    .transition(border-color, ease-in-out, .35s);
+    .transition(border-bottom, ease-in-out, .35s);
   }
 
    #access{
@@ -587,7 +585,7 @@ section{
 
 .fixed-menu{
   &.scroll-to-fixed-fixed{
-    background-color: @white;
+    //background-color: @white;
 
     >.shadow{
       display:block;
@@ -599,6 +597,7 @@ section{
     position: relative;
     background-color: @white;
     z-index: 1;
+    .transition(top, ease-in-out, .35s);
   }
 
   >.shadow{
@@ -627,6 +626,7 @@ section{
     width: @page_width;
     height: @blog_menu_height;
     border-bottom: 1px solid transparent;
+    background: transparent;
     .transition(border-color, ease-in-out, .35s);
     font-family: 'NovelSansPro-Light', sans-serif;
     text-align: center;
@@ -762,7 +762,6 @@ footer  {
 	margin: 0;
 	padding: 0;
   height: @footer_height;
-  background: @white;
   color: @black;
   clear: both;
 	text-align: center;
@@ -781,12 +780,17 @@ footer  {
     }
   }
 
+  &.active >.inner{
+    top: 0px;
+  }
+
   >.inner{
     border-top: 1px solid @grey-d;
     border-bottom: 1px solid @white;
     width: @page_width;
     height: @footer_height;
     margin: 0 auto;
+    top: 40px;
     .transition(border-color, ease-in-out, .35s);
   }
 

@@ -1,0 +1,27 @@
+
+<section>
+  <div class="middot">
+    &middot;
+  </div>
+  <div>
+    <div style="float: left; width:50%; text-align:center">
+      <h3>latest from twitter</h3>
+      <div id="tweets"></div>
+      <!-- div class="ellipsis mode">[...]</div -->
+    </div>
+    <div style="margin-left:50%;width:50%; text-align:center">
+      <h3>latest from the blog</h3>
+
+      {{#foreach posts}}
+      {{#if @first}}
+      <a href="/{{slug}}">
+          <div class="published_at">{{date published_at format="DD.MM.YYYY"}}</div>
+          <h4>{{{aime_title_excerpt characters='140'}}}</h4>
+          <div class="ellipsis mode">[...]</div>
+      </a>
+      {{/if}}
+      {{/foreach}}
+    </div>
+     <div style="clear:both"></div>
+  </div>
+</section>
