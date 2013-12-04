@@ -147,19 +147,31 @@
     });
 
     $('header.menu').scrollToFixed({
-      marginTop: 6
+      marginTop: 6,
+      zIndex: 1001
     });
     $('#secondary-menu').scrollToFixed({
-      marginTop: 37
+      marginTop: 37,
+      zIndex: 1002
     });
+
+    
+
 
     pol.footer = $('#footer');
 
     pol.footer.length && pol.footer.scrollToFixed({
       bottom: 0,
       marginTop: 95,
-      limit: pol.footer.offset().top
+      limit: pol.footer.offset().top,
+      zIndex: 1003
     });
+
+    /* @todo?$('#blog-menu').scrollToFixed({
+      marginTop: 96,
+      limit: pol.footer.offset().top - 40,//$("section.below").first().offset().top - 100,
+      zIndex: 1000
+    });*/
   };
 
   /*
@@ -229,6 +241,13 @@
 
   }
 
+  /*
+
+  */
+  pol.follow = function(checkpoint, y){
+    pol.verbose('(pol.follow)', y, checkpoint);
+  }
+
 
   /*
       Handle the scrollspy on window, looking for anchor elements.
@@ -249,9 +268,9 @@
         continue;
 
       if(i > 0 && ay > y + pol.height/2)
-        checkpoint = pol.checkpoints[i-1].id; //pol.verbose('... previous is visible', pol.checkpoints[i-1].id, pol.checkpoints[i-1].top)   
+        checkpoint = pol.checkpoints[i-1]; //pol.verbose('... previous is visible', pol.checkpoints[i-1].id, pol.checkpoints[i-1].top)   
       else
-        checkpoint = pol.checkpoints[i].id; //pol.verbose('...', pol.checkpoints[i].id, pol.checkpoints[i].top);
+        checkpoint = pol.checkpoints[i]; //pol.verbose('...', pol.checkpoints[i].id, pol.checkpoints[i].top);
       
       break; // take just the very first visible element in page
     }
@@ -259,7 +278,7 @@
     
     if(checkpoint && checkpoint != pol.previous_checkpoint) {
       pol.log('(pol.scrollspy) new checkpoint:', checkpoint);
-      pol.anchorify(checkpoint);
+      pol.anchorify(checkpoint.id);
     }
     pol.previous_checkpoint = checkpoint;
 
@@ -276,8 +295,7 @@
     pol.debug = pol.DEBUG_INFO;
 
     pol.height = $(window).height();
-    pol.resize();
-
+  
     $('p').css('text-align', 'justify').hyphenate('en-us');
 
     $(window).on('hashchange', pol.hashchange);
@@ -353,7 +371,7 @@
 
     // decorate section contents
     setTimeout(function(){
-
+      pol.resize();
       
       $("#footer").trigger('scroll.ScrollToFixed');
     }, 100);

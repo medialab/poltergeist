@@ -1,24 +1,22 @@
+  
 <div class="summary">
   <ul>
     
   </ul>
 </div>
+
 <section>
   <a class="anchor" id="the-blog" ></a>
   <h1>
     The blog.
   </h1>
+</section>
+{{> blog-menu}}
 
+<ssection>
   {{#foreach posts}}
-  <div class="post-thumbnail">
-    <a href="{{url}}" title="{{title}}">
-      <h2 style="margin-left:40px; margin-right:40px">{{{decorate title}}}</h2>
-      <h5>{{date published_at format="DD MMMM YYYY"}}</h5>
-      <div class="content">
-        <p>{{{decorate title}}}</p>
-      </div>
-    </a>
-  </div>
-{{/foreach}}
+    {{>loop-single-thumb}}
+  {{/foreach}}
+
   <div style="clear:both"></div>
 </section>

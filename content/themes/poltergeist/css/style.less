@@ -276,6 +276,30 @@ section{
     }
   }
 
+  &.introduction{
+    margin-bottom: 20px;
+    .content{
+      font-size: 1.6rem;
+    }
+    .middot{
+      margin: 20px 0;
+    }
+  }
+
+
+
+  &.post-thumbnail{
+    .published_at{
+      .smallcaps();
+      text-align: center;
+
+    }
+    >a:hover{
+      color: @black;
+    }
+
+  }
+
   h1, h2{
     font-family: "NovelPro-SemiBoldIt", serif;
     margin: 25px 0 15px 0;
@@ -376,14 +400,9 @@ section{
   }
 
   .published_at{
-    font-size: 1.1rem;
-    line-height: 1em;
     font-family: "NovelSansPro-Regular", sans-serif;
     color: @red;
     .smallcaps();
-    margin: 10px auto;
-    border-bottom: 1px solid @red;
-    width: 80px;
   }
 
   .middot{
@@ -407,23 +426,21 @@ section{
     }
   }
 
-  &.introduction{
-    margin-bottom: 20px;
-    .content{
-      font-size: 1.6rem;
-    }
-    .middot{
-      margin: 20px 0;
-    }
-  }
-
   .tweet{
     .author{
       font-family: "NovelSansPro-SemiBold", sans-serif;
       .smallcaps();
     }
 
+    .published_at{
+      font-size: 1.1rem;
+      line-height: 1em;    
+      margin: 10px auto;
+      border-bottom: 1px solid @red;
+      width: 80px;
+    }
   }
+
   #tweets{
     height: 110px;
     overflow: hidden
@@ -602,6 +619,33 @@ section{
   }
 
  
+}
+
+@blog_menu_height: 30px;
+#blog-menu{
+  >.inner{
+    width: @page_width;
+    height: @blog_menu_height;
+    border-bottom: 1px solid transparent;
+    .transition(border-color, ease-in-out, .35s);
+    font-family: 'NovelSansPro-Light', sans-serif;
+    text-align: center;
+    .smallcaps();
+    a{
+      display: inline-block;
+      margin: 0 10px;
+      line-height: @blog_menu_height;
+    }
+  }
+  &.scroll-to-fixed-fixed{
+    >.inner{
+      border-color: @grey-d;
+    }
+
+    >.shadow{
+      top: @blog_menu_height + 1;
+    }
+  }
 }
 
 .site-header  {

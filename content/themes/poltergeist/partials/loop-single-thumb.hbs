@@ -1,0 +1,12 @@
+{{! Everything inside the #post tags pulls data from the post }}
+
+  <section class="post-thumbnail">
+    <a href="{{url}}" title="{{title}}">
+      <h2 style="margin-left:40px; margin-right:40px">{{{decorate title}}}</h2>
+      <div class="published_at">{{date published_at format="DD MMMM YYYY"}}</div>
+      <div class="content">
+        <p>{{{aime_excerpt}}}</p>
+      </div>
+      <div class="ellipsis mode">[...]</div>
+    </a>
+  </section>
