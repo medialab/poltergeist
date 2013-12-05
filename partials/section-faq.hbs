@@ -3,7 +3,7 @@
   <div class="summary">
     <ul>
       {{#split_each "whatdata,ant,scientists,system,entities,power,modes"}}
-      <li><a class="to-anchor" id="to-faq--{{this}}" href="#faq/{{this}}">{{t "faq.%s.question.short" this}}</a></li>
+      <li><a class="to-anchor" id="to-faq--{{this}}" href="#faq/{{this}}">{{{aime_t "faq.%s.question.short" this}}}</a></li>
       {{/split_each}}
     </ul>
   </div>
@@ -13,7 +13,7 @@
   <a class="anchor" id="faq--{{this}}" name="faq/{{this}}"></a>
   <div class="part">
     <h2>
-      {{t "faq.%s.question" this}}
+      {{{aime_t "faq.%s.question" this}}}
     </h2>
   
     <div class="middot">
@@ -21,7 +21,7 @@
     </div>
     <div class="content">
       <p>
-       {{t "faq.%s.question.content" this}}
+       {{{aime_t "faq.%s.question.content" this}}}
       </p>
     </div>
   </div>

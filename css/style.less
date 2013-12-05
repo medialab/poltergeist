@@ -302,7 +302,7 @@ section{
 
 
 
-  &.post-thumbnail{
+  &.post-thumbnail, &.post{
     .published_at{
       .smallcaps();
       text-align: center;
@@ -311,8 +311,14 @@ section{
     >a:hover{
       color: @black;
     }
-
+    .tags{
+      font-family: "NovelSansPro-Regular", sans-serif;
+      .smallcaps();
+      text-align: center;
+    }
   }
+
+
 
   h1, h2{
     font-family: "NovelPro-SemiBoldIt", serif;
@@ -573,6 +579,9 @@ section{
     height: @secondary_menu_height;
     img{
       vertical-align: middle;
+    }
+    a.active{
+      border-width: 0;
     }
   }
 

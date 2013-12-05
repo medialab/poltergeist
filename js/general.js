@@ -205,19 +205,20 @@
       
       break; // take just the very first visible element in page
     }
-    
+    if(!checkpoint)
+      return;
     // check actual checkpoint (second level maximum)
     if(!pol.previous_checkpoint) {
       pol.trigger(pol.events.checkpoint_changed, checkpoint);
       pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
 
     } else if(pol.previous_checkpoint.name != checkpoint.name) {
-      pol.verbose('switching',pol.previous_checkpoint.name, '>>>', checkpoint.name);
+      //pol.verbose('switching',pol.previous_checkpoint.name, '>>>', checkpoint.name);
       pol.trigger(pol.events.checkpoint_discarded, pol.previous_checkpoint);
       pol.trigger(pol.events.checkpoint_changed, checkpoint);
 
       if(pol.previous_checkpoint.root != checkpoint.root) {
-        pol.verbose('... switching root', pol.previous_checkpoint.name, '>>>', checkpoint.name);
+        //pol.verbose('... switching root', pol.previous_checkpoint.name, '>>>', checkpoint.name);
       
         pol.trigger(pol.events.checkpoint_root_discarded, pol.previous_checkpoint);
         pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
@@ -231,16 +232,21 @@
   
 
   pol.listen.checkpoint_changed = function(event, checkpoint) {
-    pol.verbose('(pol.listen.checkpoint_changed)', checkpoint.id);
-    $('#to-'+checkpoint.name).addClass('active');
+    if(checkpoint)
+      $('#to-'+checkpoint.name).addClass('active');
+    else
+      pol.verbose('(pol.listen.checkpoint_changed) checkpoint unregognized', checkpoint);
   };
+
   pol.listen.checkpoint_discarded = function(event, checkpoint) {
-    pol.verbose('(pol.listen.checkpoint_discarded)', checkpoint.id);
-    $('#to-'+checkpoint.name).removeClass('active');
+    if(checkpoint)
+      $('#to-'+checkpoint.name).removeClass('active');
+    else
+      pol.verbose('(pol.listen.checkpoint_changed) checkpoint unregognized', checkpoint);
   };
   
   pol.listen.checkpoint_root_discarded = function(event, checkpoint_discarded) {
-    pol.log('(pol.listen.checkpoint_root_discarded)', checkpoint_discarded.name);
+    pol.log('(pol.listen.checkpoint_root_discarded)', checkpoint_discarded.root);
     
     // disable active 
     $('a.to-anchor[href="#'+checkpoint_discarded.root+'"]').removeClass('active');
@@ -253,6 +259,10 @@
   };
 
   pol.listen.checkpoint_root_changed = function(event, checkpoint) {
+    if(!checkpoint){
+       pol.verbose('(pol.listen.checkpoint_root_changed) checkpoint unregognized', checkpoint);
+      return;
+    }
     pol.log('(pol.listen.checkpoint_root_changed)', checkpoint.root);
     pol.cached.wrapper.attr('data-checkpoint', checkpoint.root);
 
