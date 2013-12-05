@@ -135,7 +135,7 @@
 
     pol.cached.footer.length && pol.cached.footer.scrollToFixed({
       bottom: 0,
-      marginTop: 95,
+      // marginTop: 95,
       limit: pol.cached.footer.offset().top,
       zIndex: 1003,
       dontSetWidth:true
