@@ -120,11 +120,13 @@
 
     $('header.menu').scrollToFixed({
       marginTop: 6,
-      zIndex: 1001
+      zIndex: 1001,
+      dontSetWidth:true
     });
     $('#secondary-menu').scrollToFixed({
       marginTop: 37,
-      zIndex: 1002
+      zIndex: 1002,
+      dontSetWidth:true
     });
 
     
@@ -133,7 +135,9 @@
     pol.cached.footer.length && pol.cached.footer.scrollToFixed({
       bottom: 0,
       marginTop: 95,
-      limit: pol.cached.footer.offset().top
+      limit: pol.cached.footer.offset().top,
+      zIndex: 1003,
+      dontSetWidth:true
     });
 
    /* $('#blog-menu').scrollToFixed({
@@ -313,9 +317,9 @@
     Change color to main home page. Used in conjunction with checkpoints!
   */
   pol.colorify = function(color) {
-    pol.cached.wrapper.animate({backgroundColor: color});
-    pol.cached.footer.find('.inner').animate({backgroundColor: color});
-    pol.cached.menu.find('.inner').animate({backgroundColor: color});
+    pol.cached.wrapper.animate({backgroundColor: color}, {queue: false});
+    pol.cached.footer.find('.inner').animate({backgroundColor: color}, {queue: false});
+    pol.cached.menu.animate({backgroundColor: color}, {queue: false}).find('.inner').animate({backgroundColor: color}, {queue: false});
   };
 
   pol.onload = function(event) {
