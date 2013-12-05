@@ -501,18 +501,32 @@ section{
 
 .summary{
   position: absolute;
-  left: 50%;
-  margin-left: 240px;
-  font-family: 'NovelSansPro-Light';
-  overflow: hidden;
+  margin-left: 540px;
+  width: 200px;
 
-  .smallcaps();
-  
   ul{
-    padding-top: 150px;
+    margin-top: 92px;
     list-style-type: none;
+    font-family: 'NovelSansPro-Light';
+    .smallcaps();
+  }
+
+  &.stickit {
+    margin-left: 540px;
+    position: fixed;
+    top: 0;
+  }
+
+  &.stickit-end {
+    bottom: 0px;
+    //position: absolute;
+    //right: 0;
   }
 }
+
+
+
+
 
 
 #secondary-menu{

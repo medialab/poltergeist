@@ -31,6 +31,7 @@
     checkpoint_root_changed: 'pol_checkpoint_root_changed',
     checkpoint_root_discarded: 'pol_checkpoint_root_discarded',
     checkpoint_changed: 'pol_checkpoint_changed',
+    checkpoint_discarded: 'pol_checkpoint_discarded',
     checkpoint_scroll: 'checkpoint_scroll'
   };
 
@@ -165,67 +166,11 @@
   pol.hashchange = function(event) {
     
 
-    var hashes = location.hash.split('/'),
-        target = $('a.to-anchor[href="/'+hashes.join('/')+'"]'), // direct target, full hash
-        parent_target;
-
-    pol.log('(pol.hashchange)', location.hash, 'a.to-anchor[href="/'+hashes.join('/')+'"]');
-    
-    
-
-    if(!target.hasClass('active')){
-      $('a.to-anchor.active').removeClass('active');
-      target.addClass('active');
-    }
-
-    // parent target classes
-    while(hashes.length > 1) {
-      hashes.pop();
-      pol.verbose('...', hashes.join('/'));
-      $('a.to-anchor[href="/'+hashes.join('/')+'"]').addClass('active')
-    }
-
 
     
   };
 
-  /*
-      activate current anchor links, with href param of anchor elemnet
-  */
-  pol.anchorify = function(checkpoint) {
-    var hashes = checkpoint.id.split('/'),
-        target = $('a.to-anchor[href="/'+hashes.join('/')+'"]');
 
-    pol.verbose('(pol.anchorify)', hashes);
-    
-    if(!pol.previous_checkpoint_root){
-      pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
-    } else if(pol.previous_checkpoint_root && hashes[0] != '#' + pol.previous_checkpoint_root.root) {
-      pol.verbose('... new ROOT checkpoint:', checkpoint.root);
-      if(pol.previous_checkpoint_root)
-        pol.trigger(pol.events.checkpoint_root_discarded, pol.previous_checkpoint_root);
-      pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
-    }
-
-    pol.previous_checkpoint_root = checkpoint;
-
-
-    if(!target.length)
-      return;
-
-    if(!target.hasClass('active')) {
-      $('a.to-anchor.active').removeClass('active');
-      target.addClass('active');
-    }
-
-    // parent target classes
-    while(hashes.length > 1) {
-      hashes.pop();
-      pol.verbose('...', hashes.join('/'));
-      $('a.to-anchor[href="/'+hashes.join('/')+'"]').addClass('active')
-    }
-
-  }
 
   /*
 
@@ -260,28 +205,46 @@
       
       break; // take just the very first visible element in page
     }
-
     
-    if(checkpoint && checkpoint != pol.previous_checkpoint) {
-      pol.log('(pol.scrollspy) new checkpoint:', checkpoint);
-      pol.anchorify(checkpoint);
+    // check actual checkpoint (second level maximum)
+    if(!pol.previous_checkpoint) {
       pol.trigger(pol.events.checkpoint_changed, checkpoint);
-    }
-    pol.previous_checkpoint = checkpoint;
+      pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
 
-    // evaluate footer
-    // pol.cached.footer.position().top
+    } else if(pol.previous_checkpoint.name != checkpoint.name) {
+      pol.verbose('switching',pol.previous_checkpoint.name, '>>>', checkpoint.name);
+      pol.trigger(pol.events.checkpoint_discarded, pol.previous_checkpoint);
+      pol.trigger(pol.events.checkpoint_changed, checkpoint);
+
+      if(pol.previous_checkpoint.root != checkpoint.root) {
+        pol.verbose('... switching root', pol.previous_checkpoint.name, '>>>', checkpoint.name);
+      
+        pol.trigger(pol.events.checkpoint_root_discarded, pol.previous_checkpoint);
+        pol.trigger(pol.events.checkpoint_root_changed, checkpoint);
+      }
+    }
+
+    pol.previous_checkpoint = checkpoint;
   }
 
 
   
 
-  pol.listen.checkpoint_changed= function(event, checkpoint) {
-    pol.log('(pol.listen.checkpoint_changed)', checkpoint);
+  pol.listen.checkpoint_changed = function(event, checkpoint) {
+    pol.verbose('(pol.listen.checkpoint_changed)', checkpoint.id);
+    $('#to-'+checkpoint.name).addClass('active');
   };
-
+  pol.listen.checkpoint_discarded = function(event, checkpoint) {
+    pol.verbose('(pol.listen.checkpoint_discarded)', checkpoint.id);
+    $('#to-'+checkpoint.name).removeClass('active');
+  };
+  
   pol.listen.checkpoint_root_discarded = function(event, checkpoint_discarded) {
-    pol.log('(pol.listen.checkpoint_root_discarded)', checkpoint_discarded);
+    pol.log('(pol.listen.checkpoint_root_discarded)', checkpoint_discarded.name);
+    
+    // disable active 
+    $('a.to-anchor[href="#'+checkpoint_discarded.root+'"]').removeClass('active');
+
     switch(checkpoint_discarded.root){
       case 'the-blog':
         pol.colorify('#ffffff');
@@ -290,8 +253,11 @@
   };
 
   pol.listen.checkpoint_root_changed = function(event, checkpoint) {
-    pol.verbose('(pol.listen.checkpoint_root_changed)', checkpoint.root);
+    pol.log('(pol.listen.checkpoint_root_changed)', checkpoint.root);
     pol.cached.wrapper.attr('data-checkpoint', checkpoint.root);
+
+    // disable active 
+    $('a.to-anchor[href="#'+checkpoint.root+'"]').addClass('active');
 
     switch(checkpoint.root){
       case 'introduction':
@@ -333,6 +299,8 @@
     pol.cached.wrapper = $("#wrapper");
     pol.cached.footer = $("#footer");
     pol.cached.menu = $("#secondary-menu");
+
+
 
     for(var i in pol.events){
       pol.on(pol.events[i], pol.listen[i]);
@@ -379,39 +347,6 @@
     $(window).scroll(pol.scrollspy);
     //$('body').scrollspy({ target: '#navbar' })
 
-		var summaries = $('.summary');
-        summaries.each(function(i) {
-            var summary = $(summaries[i]),
-                next = summaries[i + 1],
-                section = summary.next('section'),
-                first_content_offset = 20,
-                first_content;
-
-            if(section.length) {
-              first_content = section.find('.content');
-              if(first_content.length) {
-                //pol.verbose('found section content', first_content.first().position().top );
-                first_content_offset = section.find('.content').first().position().top + 16;
-              }
-            }
-              //
-
-            summary.scrollToFixed({
-                marginTop: 87,
-                limit: function() {
-                    var limit = 0;
-                    if (next) {
-                        limit = $(next).offset().top - $(this).outerHeight(true) - 100;
-                    } else {
-                        limit = $('#the-end').offset().top - $(this).outerHeight(true) - 100;
-                    }
-                    return limit;
-                },
-                zIndex: 999
-            });
-
-            summary.find('ul').css('padding-top', first_content_offset);
-        });
     
     // Fill with tweets
     pol.tweettify({
@@ -425,6 +360,11 @@
       pol.resize();
       pol.scrollspy();
       pol.cached.footer.trigger('scroll.ScrollToFixed');
+
+      pol.cached.wrapper.stickem({
+        container: 'section',
+        item: '.summary'
+      })
     }, 100);
 	};
 
