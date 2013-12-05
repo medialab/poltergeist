@@ -1,15 +1,14 @@
 
   <div class="content">   
-    {{#split_each "latour,leclercq,ricci,girard,guido,jacomy"}}
+    {{#split_each "latour,leclercq,ricci,girard,guido,jacomy,jdlf"}}
       <div class="exagon">
         <div class="first-name">{{t "network.member.%s.firstname" this}}</div>
         <img src="images/{{t "network.member.%s" this}}.png">
         <div class="last-name">{{t "network.member.%s.lastname" this}}</div>
       </div>
-      <h6>{{t "network.member.%s.twitter" this}}</h6>
+      <h6><a href="//twitter.com/{{t "network.member.%s.twitter" this}}">@{{t "network.member.%s.twitter" this}}</a></h6>
       <p>
         {{t "network.member.%s.bio" this}}
       </p>
-
     {{/split_each}}
   </div>
