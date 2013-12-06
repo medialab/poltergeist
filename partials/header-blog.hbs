@@ -34,11 +34,11 @@
   <div id="blog-categories-menu" class="fixed-menu">
     <div class="inner">
       
-      <a href="/tag/event">{{t "blog.tag.events"}}</a> |
-      <a href="/tag/discuss">{{t "blog.tag.discuss"}}</a> |
-      <a href="/tag/material">{{t "blog.tag.materials"}}</a> |
-      <a href="/tag/tool">{{t "blog.tag.tools"}}</a> |
-      <a href="/blog">{{t "blog.tag.all"}}</a>
+      <a href="/tag/event" class="{{#if_eq tag compare="event"}}active{{/if_eq}}">{{t "blog.tag.events"}}</a> |
+      <a href="/tag/discuss" class="{{#if_eq tag compare="discuss"}}active{{/if_eq}}">{{t "blog.tag.discuss"}}</a> |
+      <a href="/tag/material" class="{{#if_eq tag compare="material"}}active{{/if_eq}}">{{t "blog.tag.materials"}}</a> |
+      <a href="/tag/tool" class="{{#if_eq tag compare="tool"}}active{{/if_eq}}">{{t "blog.tag.tools"}}</a> |
+      <a href="/page/1" class="{{#if pagination}}active{{/if}}">{{t "blog.tag.all"}}</a>
       <br/>
 
     </div>

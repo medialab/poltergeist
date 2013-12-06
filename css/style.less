@@ -327,10 +327,12 @@ section{
       }
     }
 
-    p img{
+    img{
       box-shadow: 0 0 0px 5px @grey-d;
       margin: 20px 0;
     }
+
+    
   }
 
 
@@ -748,7 +750,13 @@ section{
   width: 100%;
   background: @white;
   z-index:1003;
-  
+  >.inner a{
+    line-height: @blog_menu_height;
+    height:@blog_menu_height - 1px;
+    &.active{
+      border-width: 3px;
+    }
+  }
 }
 
 .site-header  {
@@ -1079,10 +1087,11 @@ footer  {
     position:absolute;
     top:274px;
     margin-top: -50px;
-    text-align:center;
     display:block;
     width:30px;
     heigth: 30px;
+    line-height: 30px;
+    font-size: 1.8rem;
 
     label{
       font-family: 'NovelSansPro-Regular';
@@ -1095,9 +1104,15 @@ footer  {
 .nav-to-previous{
   left:50%;
   margin-left: -@page_width/2;
+  a{
+    text-align: left;
+  }
 }
 
 .nav-to-next{
   left:50%;
   margin-left: @page_width/2-30px;
+  a{
+    text-align: right;
+  }
 }
