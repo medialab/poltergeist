@@ -130,6 +130,11 @@
       dontSetWidth:true
     });
 
+    $('#blog-secondary-menu').scrollToFixed({
+      marginTop: 33,
+      zIndex: 1001,
+      dontSetWidth:true
+    });
     
 
 
