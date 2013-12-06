@@ -130,12 +130,13 @@
       dontSetWidth:true
     });
 
-    $('#blog-secondary-menu').scrollToFixed({
-      marginTop: 33,
-      zIndex: 1001,
+    
+    
+    $('#blog-categories-menu').scrollToFixed({
+      marginTop: 96,
+      zIndex: 1003,
       dontSetWidth:true
     });
-    
 
 
     pol.cached.footer.length && pol.cached.footer.scrollToFixed({

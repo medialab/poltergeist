@@ -666,7 +666,16 @@ section{
   }
 }
 
+#blog-secondary-menu{
+  z-index: 1001;
+  top: 37px;
+  position: fixed;
+  width: 100%;
 
+  >.inner{
+    border-color: @grey-d;
+  }
+}
 
 .fixed-menu{
   &.scroll-to-fixed-fixed{
@@ -735,6 +744,12 @@ section{
 }
 
 
+#blog-categories-menu{
+  width: 100%;
+  background: @white;
+  z-index:1003;
+  
+}
 
 .site-header  {
 	margin: 0 0 3.631em;
