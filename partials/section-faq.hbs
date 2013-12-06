@@ -9,21 +9,19 @@
   </div>
   <a class="anchor" id="faq"></a>
   {{#split_each "whatdata,ant,scientists,system,entities,power,modes"}}
-    
-  <a class="anchor" id="faq--{{this}}" name="faq/{{this}}"></a>
+  
+
   <div class="part">
+    <a class="anchor" id="faq--{{this}}" name="faq/{{this}}"></a>
     <h2>
       {{{aime_t "faq.%s.question" this}}}
     </h2>
-  
-    <div class="middot">
-      &middot;
-    </div>
     <div class="content">
       <p>
        {{{aime_t "faq.%s.question.content" this}}}
       </p>
     </div>
   </div>
-  {{/split_each}}
+  <div class="middot">&middot;</div>
+  {{/split_each}} 
 </section>

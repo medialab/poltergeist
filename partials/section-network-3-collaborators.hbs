@@ -1,15 +1,14 @@
 
-  <div class="content sweet-justice">
-    <h6>armin linke</h6>
-@ArminLinke
-
-Armin Linke is professor at the University For Arts and Design HfG Karlsruhe and an artist who works at the interface of photography and cinema and lives in Milan and Berlin. He is a virtuoso of closed spaces — laboratories and shop floors, moving through the towns of the modern desert, factories and control towers. He has acquiesced to allow his archives to be gently plundered to help us understand just what it is we are trying to do.
-
-<h6>aline wiame</h6>
-Aline Wiame, holds a PhD and is a Research Fellow at the F.R.S.-FNRS at the Université Libre de Bruxelles. Her thesis dealt with the concept of “disfigurement” as a conceptual operator between theatre and philosophy. She now works on developing the concepts of the “scene” and “image” drawing upon the work of William James and Henri Bergson. Her research themes concentrate on the intersection between esthetics and contemporary philosophy as they relate to theatre, cinema, graphic novels and animations. Since 2011 she has been a confounder of the “Souriau Workshop” dedicated to the philosophy of Etienne Souriau at the GECo of the ULB. In 2013-2014 she will be postdoctoral Fellow at the B.A.E.F. (Belgian American Educational Foundation) at Penn State University.
-
-<h6>nicolas prignot</h6>
-@nicolasprignot
-
-Nicolas is a physicist, philosopher and holds an MA in experimentation from Sciences Po. His thesis was on Félix Guattari, the philosophy of nature and community activism in defence of the environment. He teaches contemporary philosophy at the Ecole de Recherche Graphique de Bruxelles. Whether it be around controversies surrounding the danger of electromagnetic waves, GMO or the catastrophe at Fukushima, he focuses on the issues of ownership and the problems related to the co-production of knowledge.
+  <div class="content">
+    {{#split_each "linke,wiame,prignot"}}
+    <div class="exagon">
+      <div class="first-name">{{t "network.member.%s.firstname" this}}</div>
+      <img src="images/{{t "network.member.%s" this}}.png">
+      <div class="last-name">{{t "network.member.%s.lastname" this}}</div>
+    </div>
+    <h6><a href="//twitter.com/{{t "network.member.%s.twitter" this}}">@{{t "network.member.%s.twitter" this}}</a></h6>
+    <p>
+      {{{aime_t "network.member.%s.bio" this}}}
+    </p>
+    {{/split_each}}
   </div>

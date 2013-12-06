@@ -371,7 +371,7 @@
           content = section.find('.content').first();
       
       if(content.length){
-        summary.find('ul').css('margin-top', content.position().top + 24);
+        summary.find('ul').css('margin-top', Math.max(content.position().top + 24, 96));
       }
     });
 
@@ -385,7 +385,7 @@
       pol.cached.wrapper.stickem({
         container: 'section',
         item: '.summary'
-      })
+      }).scroll();
     }, 100);
 	};
 

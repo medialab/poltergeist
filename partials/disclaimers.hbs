@@ -1,0 +1,61 @@
+
+<section class="below">
+  <div class="summary">
+    <ul>
+      <li><a class="to-anchor" id="to-terms-of-use" href="#terms-of-use">{{t "terms"}}</a></li>
+      <li><a class="to-anchor" id="to-legal" href="#legal">{{t "legal"}}</a></li>
+      <li><a class="to-anchor" id="to-credits" href="#credits">{{t "credits"}}</a></li>
+      <li><a class="to-anchor" id="to-support" href="#support">{{t "supports"}}</a></li>
+    </ul>
+  </div>
+  <div class="part">
+    <a class="anchor" id="terms-of-use"></a>
+    <h2>{{t "terms"}}</h2>
+    {{#split_each "introduction,object,purpose,registration,access,contributors,submissions,publication,online,personaldata,propertyrights,responsibilities,usersresponsibilities,misc,laws"}}
+    <div class="content">
+      <h5>
+        {{{aime_t "terms.%s" this}}}
+      </h5>
+    
+      <p>{{{aime_t "terms.%s.content" this}}}</p>
+    
+    </div>
+    {{/split_each}}
+    <div class="middot">&middot;</div>
+  </div>
+
+  <div class="part">
+    <a class="anchor" id="legal"></a>
+    <h2>{{t "legal"}}</h2>
+    {{#split_each "introduction,privacy"}}
+    <div class="content">
+      <h5>
+        {{{aime_t "legal.%s" this}}}
+      </h5>
+    
+      <p>{{{aime_t "legal.%s.content" this}}}</p>
+    
+    </div>
+    {{/split_each}}
+    <div class="middot">&middot;</div>
+  </div>
+
+  <div class="part">
+    <a class="anchor" id="credits"></a>
+    <h2>{{t "credits"}}</h2>
+    <div class="content">
+      <p>{{{aime_t "credits.content"}}}</p>
+    </div>
+    <div class="middot">&middot;</div>
+  </div>
+
+  <div class="part">
+    <a class="anchor" id="support"></a>
+    <h2>{{t "supports"}}</h2>
+    <div class="content">
+      <p>{{{aime_t "supports.content"}}}</p>
+    </div>
+    
+  </div>
+
+</section>
