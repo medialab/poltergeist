@@ -1,18 +1,51 @@
-<div id="head">
-  <img src="/images/aime-title.svg" alt="An inquiry into modes of existence"/>
-</div>
+  
+  <header class="header-blog-menu scroll-to-fixed-fixed">
+    <ul id="navbar">
+      <li><a class="to-anchor" href="/#the-project">{{t 'header.project'}}</a></li>
+      <li><a class="to-anchor" href="/#the-phases">{{t 'header.phases'}}</a></li>
+      <li><a class="to-anchor" href="/#the-tools">{{t 'header.tools'}}</a></li>
+      <li><a class="to-anchor" href="/#the-network">{{t 'header.network'}}</a></li>
+      <li><a class="to-anchor" href="/#faq">{{t 'header.faq'}}</a></li>
+      <li><a class="to-anchor active" href="/">{{t 'header.blog'}}</a></li>
+    </ul>
+    <div style="clear:both"></div>
+  </header>
 
-<header class="menu">
-  <ul id="navbar">
-    <li><a class="" href="#the-project">{{t 'header.project'}}</a></li>
-    <li><a class="" href="#the-phases">{{t 'header.phases'}}</a></li>
-    <li><a class="" href="#the-tools">{{t 'header.tools'}}</a></li>
-    <li><a class="" href="#the-network">{{t 'header.network'}}</a></li>
-    <li><a class="" href="#faq">{{t 'header.faq'}}</a></li>
-    <li><a class="active" href="/blog">{{t 'header.blog'}}</a></li>
-  </ul>
-  <div style="clear:both"></div>
-</header>
+  <div id="blog-secondary-menu" class="fixed-menu" >{{! actually this menu is just a clone and it should be replaced}}
+    <div class="inner">
+      <div id="access">
+        <a class="button" href="{{baseurl}}/book">{{t 'join the inquiry'}}</a>
+      </div>
+      <div id="logo">
+        <a class="to-anchor" href="#introduction"><img src="/images/aime-logo.svg"/></a>
+      </div>
+      <div id="contacts">
+        <div class="left"><a class="button" href="//twitter.com/AIMEproject"><i class="fa fa-envelope"></i></a></div>
+        <div class="separator">|</div>
+        <div class="right"><a class="button" href=""><i class="fa fa-twitter"></i></a></div>
+      </div>
+    </div>
+    <div class="shadow"></div>
+  </div>
+
+  <section style="margin-top: 110px;">
+    <h1>The blog</h1>
+  </section>
+  <div id="blog-categories-menu" class="fixed-menu">
+    <div class="inner">
+      
+      <a href="/tag/event">{{t "blog.tag.events"}}</a> |
+      <a href="/tag/discuss">{{t "blog.tag.discuss"}}</a> |
+      <a href="/tag/material">{{t "blog.tag.materials"}}</a> |
+      <a href="/tag/tool">{{t "blog.tag.tools"}}</a> |
+      <a href="/blog">{{t "blog.tag.all"}}</a>
+      <br/>
+
+    </div>
+    <div class="shadow"></div>
+  </div>
+
+ 
 <!--
 <header class="site-header"{{#if @blog.cover}} style="background-image: url('{{@blog.cover}}');"{{/if}}>
 

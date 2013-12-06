@@ -11,6 +11,7 @@
 		{{! Styles'n'Scripts }}
 		<!-- Stylesheet -->
 		<!-- link rel='stylesheet' href='/css/style.css' type='text/css' media='all' /-->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel='stylesheet' href='{{siteurl}}/css/fonts.css' type='text/css' media='all'>
 		<link rel="stylesheet/less" type="text/css" href='{{siteurl}}/css/style.less' />
 		<script src="{{siteurl}}/js/vendor/less-1.5.0.min.js" type="text/javascript"></script>
@@ -36,7 +37,9 @@
     	{{!ghost_foot}}
 
     	{{! Main javascript file }}
-       <script type="text/javascript" src="http://davist11.github.io/jQuery-Stickem/jquery.stickem.js"></script>
+      <script type="text/javascript" src="{{siteurl}}/js/vendor/jquery.stickem.js"></script>
+      <script type="text/javascript" src="{{siteurl}}/js/vendor/timeline-min.js"></script>
+      <script type="text/javascript" src="{{siteurl}}/js/vendor/storyjs.embed.js"></script>
       <script type="text/javascript" src="{{siteurl}}/js/vendor/jquery.color.min.js"></script>
       <script type="text/javascript" src="{{siteurl}}/js/vendor/bootstrap.js"></script>
       <script type="text/javascript" src="{{siteurl}}/js/vendor/handlebars-1.1.2.js"></script>
