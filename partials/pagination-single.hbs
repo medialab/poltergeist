@@ -1,16 +1,16 @@
 
-Here are the links
-
 {{#post.prev}}
-<div>
-  prev:
-  <a href="{{url}}">{{title}}</a>
+<div id="nav-to-previous-post" class="nav-to-previous">
+  <a href="{{url}}" title="{{t "post.previous"}} {{date published_at format="DD.MM.YY"}}">
+    <i class="fa fa-angle-left"></i>
+  </a>
 </div>
 {{/post.prev}}
 
 {{#post.next}}
-<div>
-  next:
-  <a href="{{url}}">{{title}}</a>
+<div id="nav-to-next-post" class="nav-to-next">
+  <a href="{{url}}" title="{{t "post.next"}} {{date published_at format="DD.MM.YY"}}">
+    <i class="fa fa-angle-right"></i>
+  </a>
 </div>
 {{/post.next}}
