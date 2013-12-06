@@ -304,6 +304,25 @@
     pol.cached.menu.animate({backgroundColor: color}, {queue: false}).find('.inner').animate({backgroundColor: color}, {queue: false});
   };
 
+  /*
+    Add timeline.js behaviours. works only if there is a div having id=timeline
+  */
+  pol.create_timeline = function(){
+    var timeline_config = {
+        lang: "en",
+        width: "480",
+        debug: true,
+        height: pol.cached.timeline.height(),
+        start_at_slide: '23',
+        start_zoom_adjust:  '6',
+        source: 'https://docs.google.com/spreadsheet/pub?key=0An3vofkD9W6odEhmRF9GQ3ZzWlYxX3J5Z1VPcnh6aGc&output=html',
+        css: pol.cached.timeline.attr('data-css-url'),     //OPTIONAL PATH TO CSS
+        js: pol.cached.timeline.attr('data-js-url'),
+        embed_id: 'timeline'
+    };
+    createStoryJS(timeline_config);
+  }
+
   pol.onload = function(event) {
     pol.debug = pol.DEBUG_INFO;
     pol.height = $(window).height();
@@ -315,6 +334,7 @@
     pol.cached.wrapper = $("#wrapper");
     pol.cached.footer = $("#footer");
     pol.cached.menu = $("#secondary-menu");
+    pol.cached.timeline = $("#timeline");
 
 
 
@@ -392,6 +412,9 @@
         container: 'section',
         item: '.summary'
       }).scroll();
+
+      // init timeline here
+      pol.cached.timeline && pol.create_timeline();
     }, 100);
 	};
 
