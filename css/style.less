@@ -33,6 +33,7 @@ sub { font-size:50%; vertical-align: sub; }
 @footer_height: 40px;
 
 @gutter: 8px;
+@modulo: 6px;
 @white: #ffffff;
 @black: #000000;
 @red: #C0171D;
@@ -104,7 +105,6 @@ a {
   &.to-anchor{
     display: inline-block;
     border-bottom: 1px solid transparent;
-    .transition(border-color, ease-in-out, .35s);
     
   }
 
@@ -172,13 +172,14 @@ h6  {
 	font-size: 0.857em;
 }
 p {
-	-webkit-hyphens : auto;
+	/*-webkit-hyphens : auto;
 	-webkit-hyphenate-character : "\2010";
 	-webkit-hyphenate-limit-after : 1;
 	-webkit-hyphenate-limit-before : 3;
 	-moz-hyphens : manual;
 	orphans : 3;
-	widows : 3;
+	widows : 3;*/
+
 }
 // Set up consistent margins for all relevent block level elements
 ul,ol,dl,
@@ -191,10 +192,7 @@ hr {
 }
 
 ol, ul  {
-	margin: 0 0 1.618em 1.618em; 
-	li  {
-		
-	}
+	margin: 0;
 }
 
 dl {
@@ -245,7 +243,16 @@ blockquote  {
 }
 
 #footer{
-  .smallcaps();
+  a{
+    .smallcaps();
+  }
+}
+
+#the-end{
+  a{
+    padding: 0;
+    .smallcaps();
+  }
 }
 
 .anchor{
@@ -316,19 +323,25 @@ section{
       .smallcaps();
       text-align: center;
     }
+    p img{
+      box-shadow: 0 0 0px 5px @grey-d;
+      margin: 20px 0;
+    }
   }
 
 
 
   h1, h2{
     font-family: "NovelPro-SemiBoldIt", serif;
-    margin: 25px 0 15px 0;
+    margin: @modulo*4 @modulo*5 @modulo*3 @modulo*5;
     text-align: center;
     color: @red;
     font-size: 2.2rem;
   }
+
   h2{
     color: @black;
+    margin-top: @modulo*5;
   }
 
   h3, h4, h5, h6{
@@ -470,7 +483,7 @@ section{
   width:100%;
   height: @menu_height;
   background: @white;//#fafafa;
-  .transition(background-color, ease-in-out, .27s);
+  
 
   &.scroll-to-fixed-fixed{
     background: #fafafa;
@@ -488,18 +501,27 @@ section{
       border-bottom: 1px solid @grey-d;
     
     li{
-      display: inline;
+      display: inline-block;
       margin: 0 11px;
-      height: @menu_height -3;
+      height: @menu_height - 1px;
       font-family: 'NovelSansPro-Regular';
       font-size: 1.30rem;
       text-align: center;
-      line-height: @menu_height;
+      line-height: @menu_height - 1px;
       color: @black;
 
       .smallcaps();
       &:hover{
         color: @red;
+      }
+
+      a{
+         .dualtransition(color ease-in-out .35s, border-color ease-in-out .35s);
+ 
+        border-bottom: 3px solid transparent;
+        &.active{
+          border-bottom: 3px solid @red;
+        }
       }
     }
   }
@@ -513,11 +535,12 @@ section{
   ul{
     margin-top: 92px;
     list-style-type: none;
-    font-family: 'NovelSansPro-Light';
+    font-family: 'NovelSansPro-Regular';
     .smallcaps();
   }
-
+  //.transition(margin-top, linear, .35s);
   &.stickit {
+    //margin-top: 12px;
     margin-left: 540px;
     position: fixed;
     top: 0;
@@ -527,6 +550,17 @@ section{
     bottom: 0px;
     //position: absolute;
     //right: 0;
+  }
+
+  a.to-anchor{
+    border-width: 0;
+    padding: 0 @modulo*2;
+
+    &.active{
+      background: @red;
+      color: @white;
+
+    }
   }
 }
 
@@ -567,9 +601,8 @@ section{
     width: 50%;
     height: @secondary_menu_height;
     text-align: center;
-
-    
   }
+
   #logo{
     position:absolute;
     left: 50%;
@@ -613,6 +646,15 @@ section{
     left: 50%;
     color: @grey-d;
     height: @secondary_menu_height;
+  }
+
+  a.button, a.button .fa{
+    font-size: 1.8rem;
+    .transition(color ease-in-out .35s);
+  
+    &:hover{
+      color: @black;
+    }
   }
 }
 
@@ -832,6 +874,7 @@ footer  {
   }
 
   a{
+    display: inline;
     padding: 0 20px;
     
     &.to-anchor{
@@ -907,7 +950,7 @@ footer  {
 
 	body  {
     font-size: 1.4em; // 14 px
-		line-height: 1.618; // golden ratio
+		line-height: 2.4rem; //
 	}
 	
 	h1  {
@@ -977,4 +1020,9 @@ footer  {
 #disqus_thread{
   width: @content_width;
   margin:0 auto;
+
+  h4{
+    font-family: 'NovelSansPro-Regular', sans-serif;
+    .smallcaps();
+  }
 }

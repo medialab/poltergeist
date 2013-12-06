@@ -121,12 +121,12 @@
 
     $('header.menu').scrollToFixed({
       marginTop: 6,
-      zIndex: 1001,
+      zIndex: 1002,
       dontSetWidth:true
     });
     $('#secondary-menu').scrollToFixed({
       marginTop: 37,
-      zIndex: 1002,
+      zIndex: 1001,
       dontSetWidth:true
     });
 
@@ -362,6 +362,17 @@
     pol.tweettify({
       url: 'http://aime.medialab.sciences-po.fr/tweets-aime.json',
       selector: '#tweets'
+    });
+
+    // align summary baseline with their content baseline (use margin-top on ul)
+    $(".summary").each(function(i,e) {
+      var summary = $(this),
+          section = summary.closest('section'),
+          content = section.find('.content').first();
+      
+      if(content.length){
+        summary.find('ul').css('margin-top', content.position().top + 24);
+      }
     });
 
     // decorate section contents

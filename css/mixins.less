@@ -131,6 +131,14 @@
     -o-transition:@selector @animation @duration;
     transition:@selector @animation @duration;
 }
+
+.dualtransition(@t1, @t2) {
+    -webkit-transition:@t1, @t2;
+    -moz-transition:@t1, @t2;
+    -ms-transition:@t1, @t2;
+    -o-transition:@t1, @t2;
+    transition:@t1, @t2;
+}
  
 .opacity(@opacity:0.75) {
     opacity: @opacity;
