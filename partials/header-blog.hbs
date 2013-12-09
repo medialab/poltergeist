@@ -38,7 +38,7 @@
       <a href="/tag/discuss" class="{{#if_eq tag compare="discuss"}}active{{/if_eq}}">{{t "blog.tag.discuss"}}</a> |
       <a href="/tag/material" class="{{#if_eq tag compare="material"}}active{{/if_eq}}">{{t "blog.tag.materials"}}</a> |
       <a href="/tag/tool" class="{{#if_eq tag compare="tool"}}active{{/if_eq}}">{{t "blog.tag.tools"}}</a> |
-      <a href="/page/1" class="{{#if pagination}}active{{/if}}">{{t "blog.tag.all"}}</a>
+      <a href="/page/1" class="{{#unless_in tag compare="material,event,discuss,tool"}}active{{/unless_in}}">{{t "blog.tag.all"}}</a>
       <br/>
 
     </div>
