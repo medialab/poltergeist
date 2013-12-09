@@ -2,27 +2,36 @@
 <section>
   <div class="summary">
     <ul>
-      <li><a class="to-anchor" id="to-the-phases--first-stage" href="#the-phases/first-stage">first stage</a></li>
-      <li><a class="to-anchor" id="to-the-phases--second-stage" href="#the-phases/second-stage">second stage</a></li>
-      <li><a class="to-anchor" id="to-the-phases--third-stage" href="#the-phases/third-stage">third stage</a></li>
+      {{#split_each "phase-one,phase-two,phase-three"}}
+      <li><a class="to-anchor" id="to-the-phases--{{this}}" href="#the-phases/{{this}}">{{t "phases.%s.short" this}}</a></li>
+      {{/split_each}} 
     </ul>
   </div>
-  <div class="part">
-    <a class="anchor" id="the-phases"></a>
-    <a class="anchor" id="the-phases--first-stage" name="the-phases/first-stage"></a>
-    
-    {{>section-phases-1}}
-  </div>
 
+  <a class="anchor" id="the-phases"></a>
+  {{#split_each "phase-one,phase-two,phase-three"}}
   <div class="part">
-    <a class="anchor" id="the-phases--second-stage" name="the-phases/second-stage"></a>
-    {{>section-phases-2}}
-  </div>
+    <a class="anchor" id="the-phases--{{this}}" name="the-phases/{{this}}"></a>
+    <h2>
+      {{{aime_t "phases.%s" this}}}
+    </h2>
+    <h5>
+      {{{aime_t "phases.%s.when" this}}}
+    </h5>
+  
+  <h6>
+    <div class="bold">{{{aime_t "phases.%s.subtitle" this}}}</div>
+    {{{aime_t "phases.%s.abstract" this}}}  
+  </h6>
 
-  <div class="part">
-    <a class="anchor" id="the-phases--third-stage" name="the-phases/third-stage"></a>
-    {{>section-phases-3}}
+  <div class="content">
+    <p>
+      {{{aime_t "phases.%s.content" this}}}
+    </p>
   </div>
+  <div class="middot">&middot;</div>
+  {{/split_each}}
+
   {{> timeline }}
   <div class="middot">&middot;</div>
 </section>

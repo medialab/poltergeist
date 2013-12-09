@@ -1,22 +1,24 @@
 <section>
   <div class="summary">
     <ul>
-      <li><a class="to-anchor" id="to-the-tools--report" href="/#the-tools/report">{{ t "tools.report"}}</a></li>
-      <li><a class="to-anchor" id="to-the-tools--platform" href="/#the-tools/platform">{{ t "tools.platform"}}</a></li>
+      {{#split_each "report,platform"}}
+        <li><a class="to-anchor" id="to-the-tools--{{this}}" href="#the-tools/{{this}}">{{t "tools.%s.short" this}}</a></li>
+      {{/split_each}}
     </ul>
   </div>
-  <div class="part">
-    <a class="anchor" id="the-tools"></a>
-    <a class="anchor" id="the-tools--report" name="the-tools/report"></a>
-    {{>section-tools-1-report}}
-  </div>
-  
-  <div class="part">
-    <a class="anchor" id="the-tools--platform" name="the-tools/platform"></a>
-    {{>section-tools-2-platform}}
-  </div>
-
-  <div class="middot">
-    &middot;
-  </div>
+  <a class="anchor" id="the-tools"></a>
+  {{#split_each "report,platform"}}
+    <div class="part">
+      <a class="anchor" id="the-tools--{{this}}" name="the-tools/{{this}}"></a>
+      <h2>
+        {{{aime_t "tools.%s" this}}}
+      </h2>
+      <div class="content">
+        <img class="floating" src="{{siteurl}}/images/tools-{{this}}.png">
+        <p>
+          {{{aime_t "tools.%s.content" this}}}
+        </p>
+    </div>
+    <div class="middot">&middot;</div>
+  {{/split_each}}  
 </section>
