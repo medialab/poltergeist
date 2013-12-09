@@ -80,6 +80,15 @@ body  {
   text-transform: lowercase;
 }
 
+.no-smallcaps{
+  font-feature-settings: "onum", "ss01", "ss03", "liga", "kern";
+  -moz-font-feature-settings:  "onum", "liga", "ss01", "ss03";
+  -ms-font-feature-settings:  "onum", "ss01", "ss03", "liga", "kern";
+  -webkit-font-feature-settings:  "onum", "ss01", "ss03", "liga", "kern";
+  -o-font-feature-settings:  "onum", "ss01", "ss03", "liga", "kern";
+  text-rendering: optimizeLegibility;
+}
+
 .bold{
 
 }
@@ -1101,5 +1110,65 @@ footer  {
   margin-left: @page_width/2-30px;
   a{
     text-align: right;
+  }
+}
+
+#timeline{
+  border-width:0px;
+  height: 600px;
+  padding:0;
+  border-radius: 0px;
+
+  .vco-slider .slider-item .content-t .content-t-container .text .container {
+    h2.date{
+      font-family: "NovelSansPro-Regular", sans-serif;
+      color: @red;
+      .smallcaps();
+    }
+
+    h3{
+      text-align: center;
+      font-family: 'NovelPro-It', sans-serif;
+      font-size: 1.6rem;
+      .no-smallcaps();
+    }
+  }
+
+  .vco-storyjs .vco-feature p{
+    font-size: 1.4rem;
+    line-height: 2.0rem;
+    color: @black;
+    text-align: justify;
+  }
+
+  .vco-slider .nav-next, .vco-slider .nav-previous {
+    background-color: transparent;
+    border-radius: 0px;
+    .transition(background-color, ease-out, .35s);
+
+    .nav-container .icon {
+      background: transparent;
+      display: inline-block;
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #000;
+      font-size: 2rem;
+      &:before {
+      content: "\f105";
+      }
+      .opacity(1);
+    }
+    &:hover{
+      background-color:@grey-f
+    }
+
+  }
+
+  .vco-slider .nav-previous .nav-container .icon:before {
+      content: "\f104";
   }
 }
