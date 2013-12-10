@@ -1,0 +1,14 @@
+  
+  <div class="tags">{{t "post.filedunder"}}:
+    {{#foreach tags}}
+      {{#if_in name compare="material,event,discuss,tool"}}
+        <span class="tag category"><a href="{{siteurl}}/tag/{{name}}">{{t "category.%s" name}}</a></span>
+      {{/if_in}}
+    {{/foreach}}
+
+    {{#foreach tags}}
+      {{#unless_in name compare="material,event,discuss,tool"}}
+        <span class="tag"><a href="{{siteurl}}/tag/{{name}}">{{t name}}</a></span>
+      {{/unless_in}}
+    {{/foreach}}
+  </div>
