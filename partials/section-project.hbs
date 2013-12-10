@@ -2,7 +2,7 @@
 <section>
   <div class="summary">
     <ul>
-      {{#split_each "i-paragraph,ii-paragraph,iii-paragraph,iv-paragraph,iv-paragraph,v-paragraph,vi-paragraph"}}
+      {{#split_each "i-paragraph,ii-paragraph,iii-paragraph,iv-paragraph,v-paragraph,vi-paragraph"}}
         <li><a class="to-anchor" id="to-the-project--{{this}}" href="#the-project/{{this}}">{{t "project.%s.short" this}}</a></li>
       {{/split_each}}
     </ul>
@@ -13,7 +13,7 @@
     {{{t "project.title"}}}
   </h2>
   <div class="content">
-    {{#split_each "i-paragraph,ii-paragraph,iii-paragraph,iv-paragraph,iv-paragraph,v-paragraph,vi-paragraph"}}
+    {{#split_each "i-paragraph,ii-paragraph,iii-paragraph,iv-paragraph,v-paragraph,vi-paragraph"}}
       <p class="paragraph">
         <a class="anchor" id="the-project--{{this}}" name="the-project/{{this}}"></a>
         {{{aime_t "project.%s.content" this }}}
