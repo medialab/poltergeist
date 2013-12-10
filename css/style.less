@@ -1150,11 +1150,22 @@ footer  {
     color: @black;
     text-align: justify;
   }
+  
+  .vco-timeline .vco-navigation .timenav .time .time-interval >div{
+    font-family: 'NovelSansPro-Regular';
+    font-size:1.4rem;
+    padding-top: @modulo*2;
+    .smallcaps();
 
+  }
+
+  .vco-skinny.vco-notouch .vco-slider .nav-previous:hover .nav-container .date, .vco-skinny.vco-notouch .vco-slider .nav-next:hover .nav-container .date, .vco-skinny.vco-notouch .vco-slider .nav-previous:hover .nav-container .title, .vco-skinny.vco-notouch .vco-slider .nav-next:hover .nav-container .title{
+
+  }
   .vco-slider .nav-next, .vco-slider .nav-previous {
     background-color: transparent;
     border-radius: 0px;
-    .transition(background-color, ease-out, .35s);
+   // .transition(background-color, ease-out, .35s);
 
     .nav-container .icon {
       background: transparent;
@@ -1172,8 +1183,26 @@ footer  {
       }
       .opacity(1);
     }
+
+    .nav-container{
+      .date, .title{
+        font-family: 'NovelSansPro-Regular', sans-serif;
+        text-align: center;
+        font-weight: normal;
+        .smallcaps();
+        padding-right: 8px;
+      }
+      .date{
+        color: @red;
+      }
+      .title{
+        color: @black;
+      }
+    }
+
     &:hover{
-      background-color:@grey-f
+      background-color: fade(@grey-f, 93%);
+
     }
 
   }
