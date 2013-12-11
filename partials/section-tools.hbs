@@ -1,7 +1,7 @@
 <section>
   <div class="summary">
     <ul>
-      {{#split_each "report,platform"}}
+      {{#split_each "report,platform,guide"}}
         <li><a class="to-anchor" id="to-the-tools--{{this}}" href="#the-tools/{{this}}">{{t "tools.%s.short" this}}</a></li>
       {{/split_each}}
     </ul>
@@ -20,5 +20,20 @@
         </p>
     </div>
     <div class="middot">&middot;</div>
-  {{/split_each}}  
+  {{/split_each}} 
+
+  {{#split_each "guide"}}
+    <div class="part">
+      <a class="anchor" id="the-tools--{{this}}" name="the-tools/{{this}}"></a>
+      <h2>
+        {{{aime_t "tools.%s" this}}}
+      </h2>
+      <div class="content">
+        <p>
+          {{{aime_t "tools.%s.content" this}}}
+        </p>
+    </div>
+    <div class="middot">&middot;</div>
+  {{/split_each}} 
+
 </section>
