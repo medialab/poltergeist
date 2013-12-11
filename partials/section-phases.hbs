@@ -2,7 +2,7 @@
 <section>
   <div class="summary">
     <ul>
-      {{#split_each "phase-one,phase-two,phase-three,timeline"}}
+      {{#split_each "timeline,phase-one,phase-two,phase-three"}}
       <li><a class="to-anchor" id="to-the-phases--{{this}}" href="#the-phases/{{this}}">{{t "phases.%s.short" this}}</a></li>
       {{/split_each}} 
 
@@ -10,6 +10,9 @@
   </div>
 
   <a class="anchor" id="the-phases"></a>
+
+  {{> timeline }}
+
   {{#split_each "phase-one,phase-two,phase-three"}}
   <div class="part">
     <a class="anchor" id="the-phases--{{this}}" name="the-phases/{{this}}"></a>
@@ -33,6 +36,5 @@
   <div class="middot">&middot;</div>
   {{/split_each}}
 
-  {{> timeline }}
   <div class="middot">&middot;</div>
 </section>
