@@ -14,8 +14,9 @@
   </h2>
   <div class="content">
     {{#split_each "i-paragraph,ii-paragraph,iii-paragraph,iv-paragraph,v-paragraph,vi-paragraph"}}
+    <a class="anchor" id="the-project--{{this}}" name="the-project/{{this}}"></a>
+    <h3>{{{aime_t "project.%s.short" this }}}</h3>
       <p class="paragraph">
-        <a class="anchor" id="the-project--{{this}}" name="the-project/{{this}}"></a>
         {{{aime_t "project.%s.content" this }}}
       </p>
     {{/split_each}}

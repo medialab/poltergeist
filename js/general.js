@@ -311,7 +311,7 @@
     var timeline_config = {
         lang: "en",
         width: "480",
-        debug: true,
+        debug: false,
         height: "600",//pol.cached.timeline.height(),
         start_at_slide: '43',
         start_zoom_adjust:  '6',
