@@ -308,6 +308,10 @@
     Add timeline.js behaviours. works only if there is a div having id=timeline
   */
   pol.create_timeline = function(){
+    var lang = pol.cached.timeline.attr('data-lang');
+    var doc_en = 'https://docs.google.com/spreadsheet/pub?key=0An3vofkD9W6odEhmRF9GQ3ZzWlYxX3J5Z1VPcnh6aGc&output=html';
+    var doc_fr = 'https://docs.google.com/spreadsheet/ccc?key=0An3vofkD9W6odFpURFRMaGFVTjRDNzdNQUtsbXhqRlE&usp=sharing';
+    var docurl = lang=='fr' ? doc_fr : doc_en ;
     var timeline_config = {
         lang: "en",
         width: "480",
@@ -315,7 +319,7 @@
         height: "600",//pol.cached.timeline.height(),
         start_at_slide: '43',
         start_zoom_adjust:  '6',
-        source: 'https://docs.google.com/spreadsheet/pub?key=0An3vofkD9W6odEhmRF9GQ3ZzWlYxX3J5Z1VPcnh6aGc&output=html',
+        source: docurl,
         //css: pol.cached.timeline.attr('data-css-url'),     //OPTIONAL PATH TO CSS
         js: pol.cached.timeline.attr('data-js-url'),
         embed_id: 'timeline',
