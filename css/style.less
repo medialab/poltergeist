@@ -292,7 +292,7 @@ section{
   position: relative;
 
   &.below{ // footer sections
-    h1, h2{
+    h1, h2, h3 {
       font-family: "NovelSansPro-Semibold", sans-serif;
       .smallcaps;
     }
@@ -354,7 +354,7 @@ section{
 
 
 
-  h1, h2{
+  h1, h2, h3 {
     font-family: "NovelPro-SemiBoldIt", serif;
     margin: @modulo*4 @modulo*5 @modulo*3 @modulo*5;
     text-align: center;
@@ -362,7 +362,7 @@ section{
     font-size: 2.2rem;
   }
 
-  h2{
+  h2 {
     color: @black;
     margin-top: @modulo*5;
   }
@@ -379,10 +379,11 @@ section{
     }
   }
 
-  h3{
+  h3 {
+    color: @red;
     text-align: center;
     margin: 0 30px;
-    border-bottom: 1px solid @grey-d;
+    /*border-bottom: 1px solid @grey-d;*/
     .smallcaps();
   }
 
