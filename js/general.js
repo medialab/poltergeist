@@ -55,13 +55,17 @@
      ---
   */
   pol.decorate_aime = function(text) {
-    var _t =  text
-      .replace(/\[[^\]]*\]/g,function(s){
-        return "<span class='smallcaps'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
-      }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g,function(s){
-        return "<span class='smallcaps'>" + s + "</span>"
-      });
-    return _t;
+  var c = "$1·$2",
+      m = "$1";
+  var lang = pol.cached.timeline.attr('data-lang');
+  c = "<a href='/ime/"+lang+"/voc/$1-$2' target='_blank'>"+c+"</a>";
+  m = "<a href='/ime/"+lang+"/voc/$1' target='_blank'>"+m+"</a>";
+
+  var cross = "<span class='modes'>[<span class='smallcaps'>"+c+"</span>]</span>";
+  var mode = "<span class='modes'>[<span class='smallcaps'>"+m+"</span>]</span>";
+  return text
+    .replace(/\[([A-Z]{2,})[\.-·]([A-Z]{2,})\]/g, cross)
+    .replace(/\[([A-Z]{2,})\]/g, mode);
   };
   Handlebars.registerHelper('aime', pol.decorate_aime);
 
