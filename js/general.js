@@ -6,6 +6,24 @@
 (function (w, h, $, undefined) {
   "use strict";
 
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  // if /#blabla[leading]blabla ... we need to redirect to the platform !
+  var hash = w.location.hash;
+  var lang = getParameterByName("lang");
+  var langstr = lang=="" ? "" : "?lang="+lang;
+  if(hash.indexOf("c[leading]")!=-1) {
+    var redirect = "/inquiry"+langstr+hash;
+    console.log("redirect to: "+redirect);
+    window.location = redirect;
+  }
+
+
   w.pol = w.pol || {};
 
   /*
