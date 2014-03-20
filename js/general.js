@@ -70,6 +70,9 @@
   /*
 
       decorate text string with html tags
+
+      NB: we also have regular expression replace in helphers/index.js server side !
+      (should be the same)
      ---
   */
   pol.decorate_aime = function(text) {
@@ -81,10 +84,15 @@
 
   var cross = "<span class='modes'>[<span class='smallcaps'>"+c+"</span>]</span>";
   var mode = "<span class='modes'>[<span class='smallcaps'>"+m+"</span>]</span>";
+
   return text
+    // acronyms
+    .replace(/[^(\[|A-Z)]([A-Z]{3,})[^(\]|A-Z)]/g," <span class='smallcaps'>\$1</span> ")
+    // modecrosses
     .replace(/\[([A-Z]{2,})[\.-·]([A-Z]{2,})\]/g, cross)
     .replace(/\[([A-Z]{2,})\]/g, mode);
   };
+
   Handlebars.registerHelper('aime', pol.decorate_aime);
 
   
