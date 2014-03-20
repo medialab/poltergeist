@@ -1,0 +1,33 @@
+{
+  "name": "aime-poltergeist",
+  "description": "HTML5 ghost theme for AIME project",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Daniele Guido, Pierre",
+  "homepage": "",
+  "contributors": [
+    "Daniele Guido <gui.daniele@gmail.com> (https://github.com/danieleguido)",
+    "Pierre <gui.daniele@gmail.com> (https://github.com/jdlf)"
+  ],
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {},
+  "keywords": [
+    "ghost theme",
+    "aime"
+  ],
+  "repository": "",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-less": "~0.9.0",
+    "colors": "~0.6.2"
+  }
+}

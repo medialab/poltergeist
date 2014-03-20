@@ -325,7 +325,7 @@
   }
 
   pol.onload = function(event) {
-    pol.debug = pol.DEBUG_INFO;
+    pol.debug = pol.DEBUG_NONE;
     pol.height = $(window).height();
 
     // enable 'default' events
@@ -347,7 +347,7 @@
    
     
   
-    $('p').css('text-align', 'justify').hyphenate('en-us');
+    // $('p').css('text-align', 'justify').hyphenate('en-us');
 
     $(window).on('hashchange', pol.hashchange);
     pol.hashchange();
