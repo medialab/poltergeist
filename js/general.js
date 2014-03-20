@@ -6,6 +6,24 @@
 (function (w, h, $, undefined) {
   "use strict";
 
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  // if /#blabla[leading]blabla ... we need to redirect to the platform !
+  var hash = w.location.hash;
+  var lang = getParameterByName("lang");
+  var langstr = lang=="" ? "" : "?lang="+lang;
+  if(hash.indexOf("c[leading]")!=-1) {
+    var redirect = "/inquiry"+langstr+hash;
+    console.log("redirect to: "+redirect);
+    window.location = redirect;
+  }
+
+
   w.pol = w.pol || {};
 
   /*
@@ -55,13 +73,17 @@
      ---
   */
   pol.decorate_aime = function(text) {
-    var _t =  text
-      .replace(/\[[^\]]*\]/g,function(s){
-        return "<span class='smallcaps'>" + s.replace(/[^\w\[·\]]/g,'') + "</span>"
-      }).replace(/[A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ][A-ZÀÁÂÈÉÊÌÍÎÏÇÒÓÔŒÙÚÛ]+/g,function(s){
-        return "<span class='smallcaps'>" + s + "</span>"
-      });
-    return _t;
+  var c = "$1·$2",
+      m = "$1";
+  var lang = pol.cached.timeline.attr('data-lang');
+  c = "<a href='/ime/"+lang+"/voc/$1-$2' target='_blank'>"+c+"</a>";
+  m = "<a href='/ime/"+lang+"/voc/$1' target='_blank'>"+m+"</a>";
+
+  var cross = "<span class='modes'>[<span class='smallcaps'>"+c+"</span>]</span>";
+  var mode = "<span class='modes'>[<span class='smallcaps'>"+m+"</span>]</span>";
+  return text
+    .replace(/\[([A-Z]{2,})[\.-·]([A-Z]{2,})\]/g, cross)
+    .replace(/\[([A-Z]{2,})\]/g, mode);
   };
   Handlebars.registerHelper('aime', pol.decorate_aime);
 
@@ -308,14 +330,18 @@
     Add timeline.js behaviours. works only if there is a div having id=timeline
   */
   pol.create_timeline = function(){
+    var lang = pol.cached.timeline.attr('data-lang');
+    var doc_en = 'https://docs.google.com/spreadsheet/pub?key=0An3vofkD9W6odEhmRF9GQ3ZzWlYxX3J5Z1VPcnh6aGc&output=html';
+    var doc_fr = 'https://docs.google.com/spreadsheet/ccc?key=0An3vofkD9W6odFpURFRMaGFVTjRDNzdNQUtsbXhqRlE&usp=sharing';
+    var docurl = lang=='fr' ? doc_fr : doc_en ;
     var timeline_config = {
         lang: "en",
         width: "480",
-        debug: true,
+        debug: false,
         height: "600",//pol.cached.timeline.height(),
         start_at_slide: '43',
         start_zoom_adjust:  '6',
-        source: 'https://docs.google.com/spreadsheet/pub?key=0An3vofkD9W6odEhmRF9GQ3ZzWlYxX3J5Z1VPcnh6aGc&output=html',
+        source: docurl,
         //css: pol.cached.timeline.attr('data-css-url'),     //OPTIONAL PATH TO CSS
         js: pol.cached.timeline.attr('data-js-url'),
         embed_id: 'timeline',
