@@ -1,8 +1,17 @@
   <div id="secondary-menu" class="fixed-menu">
     <div class="inner">
+
       <div id="access">
-        <a class="button" href="{{inquiryurl}}?lang={{getlocale}}">{{t 'join the inquiry'}}</a>
+        <div class="access_row">
+          {{t 'join the inquiry'}}
+        </div>
+        <div class="access_row">
+            <a class="button" href="{{inquiryurl}}?lang={{getlocale}}">{{t 'through text'}}</a>
+            <span class="sep">|</span>
+            <a class="button" href="{{crossingsurl}}/#/{{getlocale}}">{{t 'through crossings'}}</a>
+        </div>
       </div>
+
       <div id="logo">
         <a class="to-anchor" href="#introduction"><img src="/images/aime-logo.svg"/></a>
       </div>

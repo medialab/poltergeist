@@ -42,24 +42,24 @@ sub { font-size:50%; vertical-align: sub; }
 
 /* DEFAULTS */
 html {
-	font-size: 62.5%; // Reset font size to 10px for easy calculation
+  font-size: 62.5%; // Reset font size to 10px for easy calculation
   height: 100%;
 }
 
 body  {
-	padding: 0;
+  padding: 0;
   margin: 0;
-	font-size: 1.4em; // 14 px
-	line-height: 1.618; // golden ratio
-	color: @black;
-	font-family: "NovelPro-Light";
-	-webkit-text-size-adjust: 100%;
+  font-size: 1.4em; // 14 px
+  line-height: 1.618; // golden ratio
+  color: @black;
+  font-family: "NovelPro-Light";
+  -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	position: relative;
-	background: #fff;
-	word-wrap:break-word;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  background: #fff;
+  word-wrap:break-word;
   height: 100%;
 
   font-feature-settings: "onum", "ss01", "ss03", "liga", "kern";
@@ -104,8 +104,8 @@ em {
 }
 
 ::selection, ::-moz-selection  {
-	background: @color_links;
-	color: #fff;
+  background: @color_links;
+  color: #fff;
 }
 
 img  { vertical-align: bottom; max-width: 100%; }
@@ -114,12 +114,12 @@ hr { background-color: @border_main; border:0; height: 1px; margin-bottom: 1.618
 /* Hyperlinks */
 
 a {
-	color: @black;
-	text-decoration:none;
+  color: @black;
+  text-decoration:none;
 
-	&:hover {
-		color: @red;
-	}
+  &:hover {
+    color: @red;
+  }
 
   &.to-anchor{
     display: inline-block;
@@ -153,51 +153,51 @@ a {
 
 /* Typography */
 /*
-	All typography (and layout) based on a modular scale using 12 & 14 px values scaled in accordance the golden ratio (1.618)
-	http://modularscale.com/scale/?px1=14&px2=12&ra1=1.618&ra2=0
-	Remember to keep margins consistent and try to avoid margin-top. If everything has an appropriate margin-bottom we don't need one and vertical rhythm will be kept consistent
+  All typography (and layout) based on a modular scale using 12 & 14 px values scaled in accordance the golden ratio (1.618)
+  http://modularscale.com/scale/?px1=14&px2=12&ra1=1.618&ra2=0
+  Remember to keep margins consistent and try to avoid margin-top. If everything has an appropriate margin-bottom we don't need one and vertical rhythm will be kept consistent
 */
 
 h1, h2, h3, h4, h5, h6  {
-	margin: 0 0 .618em;
-	//font-family: 'NovelPro-Bold';
+  margin: 0 0 .618em;
+  //font-family: 'NovelPro-Bold';
   font-weight: normal;
-	color: darken(@color_body, 100%);
-	a {
-		text-decoration: none;
-		color: darken(@color_body, 100%);
-		&:hover {
-		}
-	}
+  color: darken(@color_body, 100%);
+  a {
+    text-decoration: none;
+    color: darken(@color_body, 100%);
+    &:hover {
+    }
+  }
 }
 h1  {
-	font-size: 1.618em;
-	line-height: 1.387em;
+  font-size: 1.618em;
+  line-height: 1.387em;
 }
 h2  {
-	font-size: 1.387em;
-	line-height: 1.387em;
+  font-size: 1.387em;
+  line-height: 1.387em;
 }
 h3  {
-	font-size: 1.15em;
+  font-size: 1.15em;
 }
 h4  {
-	font-size: 1em;
+  font-size: 1em;
 }
 h5  {
-	font-size: 1em;
+  font-size: 1em;
 }
 h6  {
-	font-size: 0.857em;
+  font-size: 0.857em;
 }
 p {
-	/*-webkit-hyphens : auto;
-	-webkit-hyphenate-character : "\2010";
-	-webkit-hyphenate-limit-after : 1;
-	-webkit-hyphenate-limit-before : 3;
-	-moz-hyphens : manual;
-	orphans : 3;
-	widows : 3;*/
+  /*-webkit-hyphens : auto;
+  -webkit-hyphenate-character : "\2010";
+  -webkit-hyphenate-limit-after : 1;
+  -webkit-hyphenate-limit-before : 3;
+  -moz-hyphens : manual;
+  orphans : 3;
+  widows : 3;*/
 
 }
 // Set up consistent margins for all relevent block level elements
@@ -207,27 +207,27 @@ table,
 form,
 pre,
 hr {
-	margin: 0 0 1.618em 0;
+  margin: 0 0 1.618em 0;
 }
 
 ol, ul  {
-	margin: 0;
+  margin: 0;
 }
 
 dl {
-	dt {
-		font-weight: bold;
-	}
-	dd {
-		margin-bottom:1.618em;
-	}
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    margin-bottom:1.618em;
+  }
 }
 
 blockquote  {
-	margin: 0;
-	padding: @modulo*3 @modulo*4;
-	background: @grey-f;
-	font-style: none;
+  margin: 0;
+  padding: @modulo*3 @modulo*4;
+  background: @grey-f;
+  font-style: none;
   font-family: 'NovelSansPro-Regular', sans-serif;
   font-size: 1.2rem;
 }
@@ -253,7 +253,7 @@ blockquote  {
 #wrapper  {
   margin: 0;
   padding: 0;
-	width: 100%;
+  width: 100%;
   // height: 100%;
   position:relative;
 }
@@ -648,6 +648,32 @@ section{
     width: 50%;
     height: @secondary_menu_height;
     text-align: center;
+
+    .access_row {
+
+      width: 100%;
+      height: @secondary_menu_height / 2;
+      line-height: 22px;
+      
+      a {
+        font-size: 1.2em;
+      }
+
+      &:first-child {
+        color: @red;
+        font-family: 'NovelSansPro-Regular';
+        font-size: 1em;
+        line-height: 39px;
+        .smallcaps();
+      }
+      
+      .sep {
+        color: @grey-d;
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+
+    }
   }
 
   #logo{
@@ -797,123 +823,123 @@ section{
 }
 
 .site-header  {
-	margin: 0 0 3.631em;
-	padding: 2.618em 0;
-	text-align: center;
-	border-bottom: 5px solid @border_main;
-	.transition;
-	img  {
-		margin: 0 0 1.618em;
-	}
-	h1  {
-		margin: 0;
-		font-size: 1.2em;
-		font-weight: 900;
-		text-transform: uppercase;
-	}
-	h2  {
-		font-size: .8em;
-		text-transform: uppercase;
-		color: lighten(@color_body, 30%);
-	}
+  margin: 0 0 3.631em;
+  padding: 2.618em 0;
+  text-align: center;
+  border-bottom: 5px solid @border_main;
+  .transition;
+  img  {
+    margin: 0 0 1.618em;
+  }
+  h1  {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  h2  {
+    font-size: .8em;
+    text-transform: uppercase;
+    color: lighten(@color_body, 30%);
+  }
 }
 
 .articles  {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 740px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 740px;
 }
 
 article  {
-	margin: 0 0 3.631em;
-	header  {
-		span  {
-			display: block;
-			margin: 0 0 1.387em;
-			font-size: .8em;
-			font-family: @sans;
-			font-weight: 600;
-			text-transform: uppercase;
-			color: lighten(@color_body, 30%);
-		}
-	}
+  margin: 0 0 3.631em;
+  header  {
+    span  {
+      display: block;
+      margin: 0 0 1.387em;
+      font-size: .8em;
+      font-family: @sans;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: lighten(@color_body, 30%);
+    }
+  }
 }
 
 .home-template  {
-	article  {
-		p:after  {
-			content: '…';
-		}
-		.read-more  {
-			&:after  {
-				.iconafter;
-				content: "\f0da";
-				width: auto;
-				vertical-align: middle;
-				font-size: .9em;
-			}
-		}
-	}
+  article  {
+    p:after  {
+      content: '…';
+    }
+    .read-more  {
+      &:after  {
+        .iconafter;
+        content: "\f0da";
+        width: auto;
+        vertical-align: middle;
+        font-size: .9em;
+      }
+    }
+  }
 }
 
 nav  {
-	.clearfix;
-	margin: 0 1.618em 3.631em;
-	a  {
-		text-transform: uppercase;
-		font-family: @sans;
-		font-size: .8em;
-		font-weight: 900;
-		color: lighten(@color_body, 30%);
-		&:hover  {
-			color: darken(@color_body, 100%);
-		}
-	}
-	.prev  {
-		float: left;
-		&:before  {
-			.iconbefore;
-			content: "\f053";
-			font-size: 1.4em;
-			line-height: .4;
-		}
-	}
-	.next  {
-		float: right;
-		&:after  {
-			.iconafter;
-			content: "\f054";
-			font-size: 1.4em;
-			line-height: .4;
-		}
-	}
+  .clearfix;
+  margin: 0 1.618em 3.631em;
+  a  {
+    text-transform: uppercase;
+    font-family: @sans;
+    font-size: .8em;
+    font-weight: 900;
+    color: lighten(@color_body, 30%);
+    &:hover  {
+      color: darken(@color_body, 100%);
+    }
+  }
+  .prev  {
+    float: left;
+    &:before  {
+      .iconbefore;
+      content: "\f053";
+      font-size: 1.4em;
+      line-height: .4;
+    }
+  }
+  .next  {
+    float: right;
+    &:after  {
+      .iconafter;
+      content: "\f054";
+      font-size: 1.4em;
+      line-height: .4;
+    }
+  }
 }
 
 aside  {
-	margin: 0 0 3.631em;
-	padding: 4.236em 2.618em 1em;
-	border-top: 5px solid @border_main;
-	text-align: center;
-	font-size: .9em;
-	img  {
-		margin: 0 0 1.618em;
-		max-width: 80px;
-		.border_radius(300px);
-	}
-	p  {
-		margin: 0 auto;
-		width: 75%;
-	}
+  margin: 0 0 3.631em;
+  padding: 4.236em 2.618em 1em;
+  border-top: 5px solid @border_main;
+  text-align: center;
+  font-size: .9em;
+  img  {
+    margin: 0 0 1.618em;
+    max-width: 80px;
+    .border_radius(300px);
+  }
+  p  {
+    margin: 0 auto;
+    width: 75%;
+  }
 }
 
 footer  {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
   height: @footer_height;
   width: 100%;
   color: @black;
   clear: both;
-	text-align: center;
+  text-align: center;
   font-family: 'NovelSansPro-Regular';
   line-height:1.618em * 2;
   font-size: 1.2rem;
@@ -961,110 +987,110 @@ footer  {
 
 /* SINLGE ARTICLE */
 .single-header  {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	margin: 0 0 3.631em;
-	padding: 1em 2.618em;
-	color: #fff;
-	background: @color_links;
-	.opacity(0.97);
-	.transition;
-	h1, a  {
-		color: #fff;
-	}
-	h1  {
-		float: left;
-		margin: 0;
-		font-size: 1em;
-		line-height: 2.2;
-	}
-	img  {
-		float: left;
-		margin: 0 1.618em 0 0;
-		max-height: 35px;
-	}
-	nav  {
-		float: right;
-		margin: .5em 0 0;
-		a  {
-			span  {
-				display: none;
-			}
-			&:before, &:after  {
-				margin: 0;
-				font-size: 1.618em;
-			}
-		}
-	}
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 0 3.631em;
+  padding: 1em 2.618em;
+  color: #fff;
+  background: @color_links;
+  .opacity(0.97);
+  .transition;
+  h1, a  {
+    color: #fff;
+  }
+  h1  {
+    float: left;
+    margin: 0;
+    font-size: 1em;
+    line-height: 2.2;
+  }
+  img  {
+    float: left;
+    margin: 0 1.618em 0 0;
+    max-height: 35px;
+  }
+  nav  {
+    float: right;
+    margin: .5em 0 0;
+    a  {
+      span  {
+        display: none;
+      }
+      &:before, &:after  {
+        margin: 0;
+        font-size: 1.618em;
+      }
+    }
+  }
 }
 
 .single-article  {
-	margin: 6.854em auto 6.854em;
-	width: 100%;
-	max-width: 740px;
-	header  {
-		h1  {
-			margin: 0 0 1.2em;
-		}
-	}
-	section  {
-		> p:first-child  {
-			font-size: 1.1em;
-			font-weight: 600;
-		}
-	}
+  margin: 6.854em auto 6.854em;
+  width: 100%;
+  max-width: 740px;
+  header  {
+    h1  {
+      margin: 0 0 1.2em;
+    }
+  }
+  section  {
+    > p:first-child  {
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+  }
 }
 
 /* RESPOND */
 
 @media only screen and (min-width: 769px)  {
 
-	body  {
+  body  {
     font-size: 1.4em; // 14 px
-		line-height: 2.4rem; //
-	}
-	
-	h1  {
-		font-size: 2.244em;
-		line-height: 1.387em;
-	}
-	h2  {
-		font-size: 1.618em;
-		line-height: 1.387em;
-	}
-	h3  {
-		font-size: 1.387em;
-	}
-	h4  {
-		font-size: 1em;
-	}
-	h5  {
-		font-size: 1em;
-	}
-	h6  {
-		font-size: 0.857em;
-	}
-	
-	.site-header  {
-		margin: 0 0 5.874em;
-		padding: 5.874em 0;
-	}
-	
-	article  {
-		margin: 0 0 5.874em;
-	}
-	
-	aside  {
-		padding-left: 20%;
-		padding-right: 20%;
-	}
-	
-	.single-article  {
-		margin: 9.505em auto 9.505em;
-	}
-	
+    line-height: 2.4rem; //
+  }
+  
+  h1  {
+    font-size: 2.244em;
+    line-height: 1.387em;
+  }
+  h2  {
+    font-size: 1.618em;
+    line-height: 1.387em;
+  }
+  h3  {
+    font-size: 1.387em;
+  }
+  h4  {
+    font-size: 1em;
+  }
+  h5  {
+    font-size: 1em;
+  }
+  h6  {
+    font-size: 0.857em;
+  }
+  
+  .site-header  {
+    margin: 0 0 5.874em;
+    padding: 5.874em 0;
+  }
+  
+  article  {
+    margin: 0 0 5.874em;
+  }
+  
+  aside  {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+  
+  .single-article  {
+    margin: 9.505em auto 9.505em;
+  }
+  
 }
 
 /* ANIMATE */
@@ -1081,12 +1107,12 @@ footer  {
 }
 
 .single-header.hide  {
-	-webkit-animation: up 1s;
-	-webkit-animation-fill-mode: forwards;
+  -webkit-animation: up 1s;
+  -webkit-animation-fill-mode: forwards;
 }
 .single-header.show  {
-	-webkit-animation: down 1s;
-	 -webkit-animation-fill-mode: forwards;
+  -webkit-animation: down 1s;
+   -webkit-animation-fill-mode: forwards;
 }
 
 

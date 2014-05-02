@@ -45,5 +45,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.registerTask('default', ['less:production', 'uglify:production']);
-  grunt.registerTask('develupment', ['less:development']);
+  grunt.registerTask('development', ['less:development']);
 };
