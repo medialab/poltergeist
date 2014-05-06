@@ -1,14 +1,22 @@
 
 <section>
-  <div class="middot">
-    &middot;
+
+  <div id="contacts">
+    <div class="left"><a class="button" href="mailto:contact@modesofexistence.org"><i class="fa fa-envelope"></i></a></div>
+    <div class="separator">|</div>
+    <div class="right"><a class="button" href="http://twitter.com/AIMEproject"><i class="fa fa-twitter"></i></a></div>
   </div>
+
+  <!-- <div class="middot">&middot;</div> -->
+
   <div>
+
     <div style="float: left; width:50%; text-align:center">
       <h3>{{t "latest from twitter"}}</h3>
       <div id="tweets"></div>
       <!-- div class="ellipsis mode">[...]</div -->
     </div>
+
     <div style="margin-left:50%;width:50%; text-align:center">
       <h3>{{t "latest from the blog"}}</h3>
 
@@ -22,6 +30,8 @@
       {{/if}}
       {{/foreach}}
     </div>
-     <div style="clear:both"></div>
+
+    <div style="clear:both"></div>
   </div>
+
 </section>

@@ -19,25 +19,18 @@
   <div id="blog-secondary-menu" class="fixed-menu" >{{! actually this menu is just a clone and it should be replaced}}
     <div class="inner">
 
-      <div id="access">
-        <div class="access_row">
-          {{t 'join the inquiry'}}
-        </div>
-        <div class="access_row">
-            <a class="button" href="{{inquiryurl}}?lang={{getlocale}}">{{t 'through text'}}</a>
-            <span class="sep">|</span>
-            <a class="button" href="{{crossingsurl}}/#/{{getlocale}}">{{t 'through crossings'}}</a>
-        </div>
+      <div class="access thetext">
+        <a class="button" href="{{inquiryurl}}?lang={{getlocale}}" target="_blank">{{t 'access text'}}</a>
       </div>
-      
+
       <div id="logo">
-        <a class="to-anchor" href="{{siteurl}}/#introduction"><img src="/images/aime-logo.svg"/></a>
+        <a class="to-anchor" href="#introduction"><img src="/images/aime-logo.svg"/></a>
       </div>
-      <div id="contacts">
-        <div class="left"><a class="button" href="mailto:contact@modesofexistence.org"><i class="fa fa-envelope"></i></a></div>
-        <div class="separator">|</div>
-        <div class="right"><a class="button" href="http://twitter.com/AIMEproject"><i class="fa fa-twitter"></i></a></div>
+
+      <div class="access thecrossings">
+        <a class="button" href="{{crossingsurl}}/#/{{getlocale}}" target="_blank">{{t 'access crossings'}}</a>
       </div>
+
     </div>
     <div class="shadow"></div>
   </div>
