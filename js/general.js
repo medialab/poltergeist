@@ -378,7 +378,33 @@
     }
 
     
-   
+    ////////////////////////////////////////////////////////////
+    // will fetch the latest contributions from AIME API and build a list
+    var lang = pol.cached.timeline.attr('data-lang');
+    console.log("Getting contributions...");
+    var t = lang=='en' ? "Title" : "Titre";
+    var a = lang=='en' ? "Author" : "Auteur";
+    $("table#contributions").append('<tr>'+
+      '<th class="title">'+t+'</td>'+
+      '<th class="author">'+a+'</td>'+
+      '</tr>');
+
+    $.ajax({
+      //url: "//www.modesofexistence.org/crossings_server/api/stats",
+      url: "//aime.medialab.sciences-po.fr/crossings_dev_server/api/stats",
+      dataType: "json",
+    }).done(function(data) {
+      var rows = data.contributions;
+      var rowTempl = Handlebars.compile('<tr>'+
+        '<td class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></td>'+
+        '<td class="author">{{author.name}}</td>'+
+        '</tr>');
+      rows.forEach(function(c) {
+        c.title = c.title.length>61 ? c.title.slice(0,58)+"..." : c.title;
+        $("table#contributions").append( rowTempl(c) );  
+      })
+      
+    });
     
   
     // $('p').css('text-align', 'justify').hyphenate('en-us');
