@@ -394,14 +394,22 @@
       url: "//aime.medialab.sciences-po.fr/crossings_dev_server/api/stats",
       dataType: "json",
     }).done(function(data) {
-      var rows = data.contributions;
+      var rows = data.contributions.sort(function(a,b) {
+        var nA = a.author.name.toLowerCase();
+        var nB = b.author.name.toLowerCase();
+        if(nA < nB) return -1;
+        else if(nA > nB) return 1;
+        return 0;
+      });
       var rowTempl = Handlebars.compile('<tr>'+
         '<td class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></td>'+
         '<td class="author">{{author.name}}</td>'+
         '</tr>');
       rows.forEach(function(c) {
-        c.title = c.title.length>61 ? c.title.slice(0,58)+"..." : c.title;
-        $("table#contributions").append( rowTempl(c) );  
+        if(c.author.name!="AIME Team") {
+          c.title = c.title.length>61 ? c.title.slice(0,58)+"..." : c.title;
+          $("table#contributions").append( rowTempl(c) );  
+        }
       })
       
     });
