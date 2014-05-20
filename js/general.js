@@ -391,13 +391,20 @@
     //   '</tr>');
 
     $.ajax({
-      //url: "//www.modesofexistence.org/crossings_server/api/stats",
-      url: "//aime.medialab.sciences-po.fr/crossings_dev_server/api/stats",
+      url: "//www.modesofexistence.org/crossings_server/api/stats",
+      //url: "//aime.medialab.sciences-po.fr/crossings_dev_server/api/stats",
       dataType: "json",
     }).done(function(data) {
-      var rows = data.contributions.sort(function(a,b) {
-        var nA = a.author.name.toLowerCase();
-        var nB = b.author.name.toLowerCase();
+        var rows = data.contributions.map(function(e) {
+        var sp = e.author.name.split(" ");
+        var N = sp.shift();
+        sp.push(N);
+        e.reversed = sp.join(" ");
+        return e;
+      });
+      rows = rows.sort(function(a,b) {
+        var nA = a.reversed.toLowerCase();
+        var nB = b.reversed.toLowerCase();
         if(nA < nB) return -1;
         else if(nA > nB) return 1;
         return 0;
@@ -407,13 +414,16 @@
       //   '<td class="author">{{author.name}}</td>'+
       //   '</tr>');
       var rowTempl = Handlebars.compile(
-        '<div class="author">{{author.name}}</div>'+
+        '<div class="author {{css}}">{{author.name}}</div>'+
         '<div class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></div>'+
         '<div class="lang">({{lang}})</div><br/>');
+      var prev = "";
       rows.forEach(function(c) {
-        if(c.author.name!="AIME Team") {
-          c.title = c.title.length>55 ? c.title.slice(0,52)+"..." : c.title;
+        if(c.author.name!="AIME Team" && c.author.name!="Bruno Latour") {
+          c.title = c.title.length>48 ? c.title.slice(0,46)+".." : c.title;
+          c.css = c.author.name == prev ? "opak" : "";
           $("#contributions").append( rowTempl(c) );  
+          prev = c.author.name;
         }
       })
       

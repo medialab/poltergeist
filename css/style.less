@@ -503,7 +503,7 @@ section{
   #contributions {
     width: 100%;
     font-size: 0.85em;
-    
+
     .author, .title, .lang {
       display: inline-block;
     }
@@ -529,7 +529,10 @@ section{
       color: @red;
       text-decoration: underline;
       font-weight: normal;
-      padding-right: 10px;
+      padding-right: 12px;
+      &.opak {
+        opacity: 0;
+      }
     }
 /*    td.author {
       text-align: right;
