@@ -381,13 +381,14 @@
     ////////////////////////////////////////////////////////////
     // will fetch the latest contributions from AIME API and build a list
     var lang = pol.cached.timeline.attr('data-lang');
-    console.log("Getting contributions...");
-    var t = lang=='en' ? "Title" : "Titre";
-    var a = lang=='en' ? "Author" : "Auteur";
-    $("table#contributions").append('<tr>'+
-      '<th class="title">'+t+'</td>'+
-      '<th class="author">'+a+'</td>'+
-      '</tr>');
+    //console.log("Getting contributions...");
+    
+    // var t = lang=='en' ? "Title" : "Titre";
+    // var a = lang=='en' ? "Author" : "Auteur";
+    // $("table#contributions").append('<tr>'+
+    //   '<th class="title">'+t+'</td>'+
+    //   '<th class="author">'+a+'</td>'+
+    //   '</tr>');
 
     $.ajax({
       //url: "//www.modesofexistence.org/crossings_server/api/stats",
@@ -401,14 +402,18 @@
         else if(nA > nB) return 1;
         return 0;
       });
-      var rowTempl = Handlebars.compile('<tr>'+
-        '<td class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></td>'+
-        '<td class="author">{{author.name}}</td>'+
-        '</tr>');
+      // var rowTempl = Handlebars.compile('<tr>'+
+      //   '<td class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></td>'+
+      //   '<td class="author">{{author.name}}</td>'+
+      //   '</tr>');
+      var rowTempl = Handlebars.compile(
+        '<div class="author">{{author.name}}</div>'+
+        '<div class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></div>'+
+        '<div class="lang">({{lang}})</div><br/>');
       rows.forEach(function(c) {
         if(c.author.name!="AIME Team") {
-          c.title = c.title.length>61 ? c.title.slice(0,58)+"..." : c.title;
-          $("table#contributions").append( rowTempl(c) );  
+          c.title = c.title.length>55 ? c.title.slice(0,52)+"..." : c.title;
+          $("#contributions").append( rowTempl(c) );  
         }
       })
       

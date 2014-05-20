@@ -500,33 +500,41 @@ section{
    
   }
 
-  table#contributions {
+  #contributions {
     width: 100%;
+    font-size: 0.85em;
     
-    th.title {
-      text-align: left;
-      font-size: 22px;
-      font-family: "NovelPro-SemiBoldIt", serif;
-      font-weight: normal;
-      padding-bottom: 10px;
-      padding-top: 20px;
+    .author, .title, .lang {
+      display: inline-block;
     }
-    td.title {
+    .lang {
+      font-family: "NovelMonoPro-Regular";
+    }
+    .title {
+      text-align: left;
+      font-family: "NovelSansPro-Regular";
+      .smallcaps();
+      font-weight: normal;
+      padding-right: 5px;
+    }
+/*    td.title {
       text-align: left;
       font-size: 0.8em;
       .smallcaps();
       font-family: 'NovelSansPro-Regular';     
-    }
-    th.author {
+    }*/
+    .author {
       text-align: right;
-      font-size: 22px;
-      font-family: "NovelPro-SemiBoldIt", serif;
+      font-family: "NovelSansPro-Light";
+      color: @red;
+      text-decoration: underline;
       font-weight: normal;
+      padding-right: 10px;
     }
-    td.author {
+/*    td.author {
       text-align: right;
       font-size: 0.8em;
-    }
+    }*/
   }
 
   .tweet{
