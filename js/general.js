@@ -87,7 +87,8 @@
 
   return text
     // acronyms
-    .replace(/[^(\[|A-Z)] ([A-Z]{3,}) [^(\]|A-Z)]/g," <span class='smallcaps'>\$1</span> ")
+    .replace(/\[ */g,"[").replace(/ *\]/g,"]")
+    .replace(/([^(\[|A-Z)])([A-Z ]{4,})([^(\]|A-Z)])/g,"\$1 <span class='smallcaps'>\$2</span> \$3")
     // modecrosses
     .replace(/\[([A-Z]{2,})[\.\-·]([A-Z]{2,})\]/g, cross)
     .replace(/\[([A-Z]{2,})\]/g, mode);
