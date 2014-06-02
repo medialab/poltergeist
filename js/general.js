@@ -423,7 +423,7 @@
         if(c.author.name!="AIME Team" && c.author.name!="Bruno Latour") {
           c.title = c.title.length>48 ? c.title.slice(0,46)+".." : c.title;
           c.css = c.author.name == prev ? "opak" : "";
-          $("#contributions").append( rowTempl(c) );  
+          $("#fetched_contributions_list_div").append( rowTempl(c) );  
           prev = c.author.name;
         }
       })
