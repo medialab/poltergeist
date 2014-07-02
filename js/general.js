@@ -348,7 +348,7 @@
         width: "480",
         debug: false,
         height: "600", //pol.cached.timeline.height(),
-        start_at_slide: '43',
+        start_at_slide: lang=='fr' ? '75':'66' ,
         start_zoom_adjust:  '6',
         source: docurl,
         //css: pol.cached.timeline.attr('data-css-url'),     //OPTIONAL PATH TO CSS
