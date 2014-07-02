@@ -1211,49 +1211,81 @@ footer  {
   }
 }
 
-#timeline{
+#timelinefullscreentogglediv {
+  text-align: center;
+  width: 100%;  
+}
+#timelinefullscreentoggle{
+  cursor: pointer;
+  
+  
+  color: @red;
+  font-family: 'NovelSansPro-Regular';
+  font-size: 1.4rem;
+  .smallcaps();
+  &:hover {
+    color:@black;
+  }
+}
+
+#timeline {
   border-width:0px;
   height: 600px;
   padding:0;
   border-radius: 0px;
 
-  .vco-slider .slider-item .content-t .content-t-container .text .container {
+  .vco-slider .slider-item .content .content-container .text .container {
+
+    p {
+      font-family: 'NovelPro-Light' !important;
+    }
+
     h2.date{
-      font-family: "NovelSansPro-Regular", sans-serif;
+      font-family: "NovelSansPro-Regular", sans-serif !important;
       color: @red;
       .smallcaps();
     }
 
-    h3{
+    h3 {
       text-align: center;
       font-family: 'NovelPro-It', sans-serif;
       font-size: 1.6rem;
       .no-smallcaps();
     }
+
   }
 
-  .vco-storyjs .vco-feature p{
+  .vco-navigation .timenav .content .flag h3 {
+    font-family: "NovelSansPro-Regular", sans-serif !important;
+  }
+
+  .vco-storyjs .vco-feature p {
     font-size: 1.4rem;
     line-height: 2.0rem;
     color: @black;
     text-align: justify;
   }
   
-  .vco-timeline .vco-navigation .timenav .time .time-interval >div{
-    font-family: 'NovelSansPro-Regular';
-    font-size:1.4rem;
+  .vco-timeline .vco-navigation .timenav .time .time-interval >div {
+    font-family: 'NovelSansPro-Regular' !important;
+    font-size: 1.4rem;
     padding-top: @modulo*2;
     .smallcaps();
 
   }
 
-  .vco-skinny.vco-notouch .vco-slider .nav-previous:hover .nav-container .date, .vco-skinny.vco-notouch .vco-slider .nav-next:hover .nav-container .date, .vco-skinny.vco-notouch .vco-slider .nav-previous:hover .nav-container .title, .vco-skinny.vco-notouch .vco-slider .nav-next:hover .nav-container .title{
+  .vco-skinny.vco-notouch .vco-slider .nav-previous:hover .nav-container .date,
+  .vco-skinny.vco-notouch .vco-slider .nav-next:hover .nav-container .date,
+  .vco-skinny.vco-notouch .vco-slider .nav-previous:hover .nav-container .title,
+  .vco-skinny.vco-notouch .vco-slider .nav-next:hover .nav-container .title {
 
   }
-  .vco-slider .nav-next, .vco-slider .nav-previous {
+
+  .vco-slider .nav-next,
+  .vco-slider .nav-previous {
     background-color: transparent;
     border-radius: 0px;
-   // .transition(background-color, ease-out, .35s);
+   /* .transition(background-color, ease-out, .35s);*/
 
     .nav-container .icon {
       background: transparent;
@@ -1272,8 +1304,8 @@ footer  {
       .opacity(1);
     }
 
-    .nav-container{
-      .date, .title{
+    .nav-container {
+      .date, .title {
         font-family: 'NovelSansPro-Regular', sans-serif;
         text-align: center;
         font-weight: normal;

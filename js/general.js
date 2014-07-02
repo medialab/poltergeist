@@ -347,7 +347,7 @@
         lang: "en",
         width: "480",
         debug: false,
-        height: "600",//pol.cached.timeline.height(),
+        height: "600", //pol.cached.timeline.height(),
         start_at_slide: '43',
         start_zoom_adjust:  '6',
         source: docurl,
@@ -357,6 +357,19 @@
         
     };
     createStoryJS(timeline_config);
+
+    // we tryed to go fullscreen using css, but. well. simpler to open a new page (see ./timeline.html)
+    // $("#timelinefullscreentoggle").click(function(e) {
+    //   console.log("Toggling timeline fullscreen");
+    //   var t = $("#timeline");
+    //   t.parent().addClass("fullscreenedparent");
+    //   var timeline_config_full = timeline_config;
+    //   timeline_config_full.width = "100%";
+    //   timeline_config_full.heigth = "100%";
+    //   $("#timeline").html("");
+    //   createStoryJS(timeline_config_full);
+    //   $("#timeline").addClass("fullscreened");
+    // });
   }
 
   pol.onload = function(event) {

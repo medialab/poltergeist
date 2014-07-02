@@ -1,0 +1,78 @@
+<html>
+
+  <head>
+    
+    <title>AIME Timeline</title>
+
+    <script src="js/vendor/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/vendor/storyjs.embed.js"></script>
+
+    <link rel='stylesheet' href='{{siteurl}}/css/fonts.css' type='text/css' media='all'>
+
+    <style type="text/css">
+
+      #back {
+        z-index: 99999;
+        position: fixed;
+        width: 100%;
+        text-align: center;
+      }
+      #back a {
+        font-family: "NovelSansPro-Regular", sans-serif !important;
+        color: #C0171D;
+        font-size: 14px;
+        font-feature-settings: "smcp","onum","ss01","ss03","liga","kern";
+        -moz-font-feature-settings: "smcp","onum","liga","ss01","ss03";
+        -ms-font-feature-settings: "smcp","onum","ss01","ss03","liga","kern";
+        -webkit-font-feature-settings: "smcp","onum","ss01","ss03","liga","kern";
+        -o-font-feature-settings: "smcp","onum","ss01","ss03","liga","kern";
+        text-rendering: optimizeLegibility;
+        text-transform: lowercase;
+        text-decoration: none;
+      }
+      #back a:hover {
+        color: black;
+      }
+      #timeline {
+        box-sizing: border-box;
+        padding-top: 30px !important;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="back"><a href="http://www.modesofexistence.org/">back</a></div>
+    <div id="timeline"></div>
+  </body>
+
+  <script type="text/javascript">
+   
+    var lang = window.location.hash.replace("#","") || "en";
+    
+    var backtxt = lang=="en" ?
+          "close timeline" :
+          "fermer la timeline" ;
+    $("#back a").text(backtxt);
+
+    var doc_en = 'https://docs.google.com/spreadsheet/pub?key=0An3vofkD9W6odEhmRF9GQ3ZzWlYxX3J5Z1VPcnh6aGc&output=html';
+    var doc_fr = 'https://docs.google.com/spreadsheet/ccc?key=0An3vofkD9W6odFpURFRMaGFVTjRDNzdNQUtsbXhqRlE&usp=sharing';
+    var docurl = lang=='fr' ? doc_fr : doc_en ;
+    var timeline_config = {
+        lang: "en",
+        width: "100%",
+        debug: false,
+        height: "100%",//pol.cached.timeline.height(),
+        start_at_slide: '43',
+        start_zoom_adjust:  '6',
+        source: docurl,
+        //css: pol.cached.timeline.attr('data-css-url'),     //OPTIONAL PATH TO CSS
+        js: "/js/vendor/timeline-min.js",
+        embed_id: 'timeline',
+        
+    };
+    createStoryJS(timeline_config);
+
+  </script>
+
+</html>
