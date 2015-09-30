@@ -2,3 +2,4 @@
 *.sublime-*
 *.db
 node_modules/
+js/poltergeist.min.js
