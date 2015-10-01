@@ -405,10 +405,11 @@
     //   '</tr>');
 
     $.ajax({
-      url: "//www.modesofexistence.org/crossings_server/api/stats",
-      //url: "//aime.medialab.sciences-po.fr/crossings_dev_server/api/stats",
+      url: "/api/stats",
       dataType: "json",
     }).done(function(data) {
+        data = data.result;
+
         var rows = data.contributions.map(function(e) {
         var sp = e.author.name.split(" ");
         var N = sp.shift();
