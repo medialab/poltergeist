@@ -430,7 +430,7 @@
       //   '</tr>');
       var rowTempl = Handlebars.compile(
         '<div class="author {{css}}">{{author.name}}</div>'+
-        '<div class="title"><a href="http://www.modesofexistence.org/ime/{{lang}}/{{id}}" target="_new">{{title}}</a></div>'+
+        '<div class="title"><a href="/inquiry/doc/{{id}}" target="_new">{{title}}</a></div>'+
         '<div class="lang">({{lang}})</div><br/>');
       var prev = "";
       rows.forEach(function(c) {
