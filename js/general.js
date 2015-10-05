@@ -411,15 +411,17 @@
         data = data.result;
 
         var rows = data.contributions.map(function(e) {
-        var sp = e.author.name.split(" ");
-        var N = sp.shift();
-        sp.push(N);
-        e.reversed = sp.join(" ");
-        return e;
+        //var sp = e.author.name.split(" ");
+        //var N = sp.shift();
+        //sp.push(N);
+        //e.reversed = sp.join(" ");
+	e.sortkey=e.author.name+e.author.surname
+  	e.author.displayname=e.author.surname+" "+e.author.name
+	return e;
       });
       rows = rows.sort(function(a,b) {
-        var nA = a.reversed.toLowerCase();
-        var nB = b.reversed.toLowerCase();
+        var nA = a.sortkey.toLowerCase();
+        var nB = b.sortkey.toLowerCase();
         if(nA < nB) return -1;
         else if(nA > nB) return 1;
         return 0;
@@ -429,16 +431,16 @@
       //   '<td class="author">{{author.name}}</td>'+
       //   '</tr>');
       var rowTempl = Handlebars.compile(
-        '<div class="author {{css}}">{{author.name}}</div>'+
+        '<div class="author {{css}}">{{author.displayname}}</div>'+
         '<div class="title"><a href="/inquiry/doc/{{id}}" target="_new">{{title}}</a></div>'+
         '<div class="lang">({{lang}})</div><br/>');
       var prev = "";
       rows.forEach(function(c) {
-        if(c.author.name!="AIME Team" && c.author.name!="Bruno Latour") {
+        if(c.author.displayname!="AIME Team" && c.author.displayname!="Bruno Latour") {
           c.title = c.title.length>48 ? c.title.slice(0,46)+".." : c.title;
-          c.css = c.author.name == prev ? "opak" : "";
+          c.css = c.author.displayname == prev ? "opak" : "";
           $("#fetched_contributions_list_div").append( rowTempl(c) );  
-          prev = c.author.name;
+          prev = c.author.displayname;
         }
       })
       
