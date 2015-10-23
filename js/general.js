@@ -487,7 +487,7 @@
     
     // Fill with tweets
     pol.tweettify({
-      url: 'http://aime.medialab.sciences-po.fr/tweets-aime.json',
+      url: 'http://modesofexistence.org/tweets.json',
       selector: '#tweets'
     });
 
