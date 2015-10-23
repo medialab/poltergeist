@@ -108,9 +108,9 @@
   pol.tweettify = function(options){
     pol.log('(pol.twettify) options', options);
     
-    $.ajax({
-      url: options.url
-    }).done(function(data) {
+    $.getJSON(
+      options.url
+    ).done(function(data) {
       if(!data.length)
         return pol.error('no data received or wrong format, received:', data);
 
